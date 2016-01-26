@@ -1,0 +1,52 @@
+copy file to destination
+load class
+make file
+write to file
+new buffered stream
+open connection
+create socket
+put a pair into a map
+set thread max priority
+set property value
+the file exist
+get thread id
+join threads
+delete file
+print exception stack trace
+directory
+get thread stack trace
+read line by line file
+set time zone to GMT
+free memory
+total memory
+new data stream
+rename file to
+move file
+read utf from the file
+set thread min priority
+create panel and set layout to border
+sort array
+add label to panel
+write to data ouput stream
+get date when file was last time modified
+check file permission
+read lines with numbers from file
+read from console
+file data available
+get double value
+write object to file output stream
+create bit set and set element to true
+accept request on port
+thread group
+create panel and set layout to grid
+get screen size
+get splash screen graphics
+get display refresh rate
+get keystroke modifiers
+generate RSA private key
+reverse list
+intersection of rectangle with rectangle
+set cursor over label to hand
+read big integer from console
+delete file when JVM terminates
+get date instance for Germany
