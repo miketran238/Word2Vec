@@ -9,14 +9,17 @@ import java.util.Map;
 
 /**
  * Trainer for neural network using continuous bag of words
+ * The main difference of this model, this includes an extra token at the beginning of every
+ * context window. This token is considered as a topic of the whole sentence. This topic
+ * contributes in the model as context to predict centered word
  */
-class CBOWModelTrainer extends NeuralNetworkTrainer {
+class TopicCBOWModelTrainer extends NeuralNetworkTrainer {
 	
-	CBOWModelTrainer(NeuralNetworkConfig config, Multiset<String> counts, Map<String, HuffmanNode> huffmanNodes, TrainingProgressListener listener) {
+	TopicCBOWModelTrainer(NeuralNetworkConfig config, Multiset<String> counts, Map<String, HuffmanNode> huffmanNodes, TrainingProgressListener listener) {
 		super(config, counts, huffmanNodes, listener);
 	}
 	
-	/** {@link Worker} for {@link CBOWModelTrainer} */
+	/** {@link Worker} for {@link TopicCBOWModelTrainer} */
 	private class CBOWWorker extends Worker {
 		private CBOWWorker(int randomSeed, int iter, Iterable<List<String>> batch) {
 			super(randomSeed, iter, batch);
@@ -25,6 +28,14 @@ class CBOWModelTrainer extends NeuralNetworkTrainer {
 		@Override void trainSentence(List<String> sentence) {
 			int sentenceLength = sentence.size();
 			
+			if(sentenceLength == 0)
+				return;
+			
+			/* First token as topic */
+			String topicToken = sentence.get(0);
+			int topicIdx = huffmanNodes.get(topicToken).idx;
+			
+			/** Should guarantee that the first token of any sentences is always an API considered as topic */
 			for (int sentencePosition = 0; sentencePosition < sentenceLength; sentencePosition++) {
 				String word = sentence.get(sentencePosition);
 				HuffmanNode huffmanNode = huffmanNodes.get(word);
@@ -37,8 +48,14 @@ class CBOWModelTrainer extends NeuralNetworkTrainer {
 				nextRandom = incrementRandom(nextRandom);
 				int b = (int)((nextRandom % window) + window) % window;
 				
-				// in -> hidden                                                                                                                                                                                       
-				int cw = 0;
+				// in -> hidden
+				/* Also include topic token into context */
+				for (int d = 0; d < layer1_size; d++) {
+					neu1[d] += syn0[topicIdx][d];
+				}
+				
+				/* Number of words counted in window starts from 1 (rather 0) */
+				int cw = 1;
 				for (int a = b; a < window * 2 + 1 - b; a++) {
 					if (a == window)
 						continue;
@@ -84,7 +101,11 @@ class CBOWModelTrainer extends NeuralNetworkTrainer {
 				
 				handleNegativeSampling(huffmanNode);
 				
-				// hidden -> in                                                                                                                                                                                     
+				// hidden -> in
+				/* Also include topic token to update calculation */
+				for (int d = 0; d < layer1_size; d++)
+					syn0[topicIdx][d] += neu1e[d];
+				
 				for (int a = b; a < window * 2 + 1 - b; a++) {
 					if (a == window)
 						continue;

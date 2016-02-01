@@ -30,7 +30,19 @@ public enum NeuralNetworkType {
 			return 0.025;
 		}
 	},
+	
+	/* CBOEW model with an addition of 'topic' token */
+	TopicCBOW {
+		@Override NeuralNetworkTrainer createTrainer(NeuralNetworkConfig config, Multiset<String> counts, Map<String, HuffmanNode> huffmanNodes, TrainingProgressListener listener) {
+			return new TopicCBOWModelTrainer(config, counts, huffmanNodes, listener);
+		}
+		
+		@Override public double getDefaultInitialLearningRate() {
+			return 0.05;
+		}
+	},
 	;
+	
 	
 	/** @return Default initial learning rate */
 	public abstract double getDefaultInitialLearningRate();
