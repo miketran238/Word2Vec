@@ -176,6 +176,8 @@ public class Word2VecProcessingJava {
 			// read survey data 
 			
 			// pre-process to get API under Word2Vec format ::
+			
+			// write to file
 		}
 		catch(Exception e){
 
