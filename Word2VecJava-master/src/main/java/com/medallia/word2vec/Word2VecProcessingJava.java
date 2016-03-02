@@ -168,6 +168,19 @@ public class Word2VecProcessingJava {
 
 		}
 	}
+	
+	public static void calculateSpearmanRHO()  throws IOException, TException, InterruptedException, UnknownWordException {
+		try {
+			Word2VecModel model = Word2VecModel.fromBinFile(new File("text8.bin"));
+			
+			// read survey data 
+			
+			// pre-process to get API under Word2Vec format ::
+		}
+		catch(Exception e){
+
+		}
+	}
 
 	private static void interactWithSim(Searcher searcher) throws IOException, UnknownWordException {
 		try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
@@ -278,7 +291,7 @@ public class Word2VecProcessingJava {
 			FileWriter labelFW = new FileWriter("dataLabel.txt");
 			FileWriter valueFW = new FileWriter("dataValues.txt");
 			
-			String [] samples = MatrixUtils.simpleReadLines(new File("PCA4.txt"));
+			String [] samples = MatrixUtils.simpleReadLines(new File("PCA.txt"));
 			HashSet<String> hashedSamples = new HashSet<String>();
 			for(String sample : samples) {
 				hashedSamples.add(sample);
