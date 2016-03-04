@@ -13,12 +13,11 @@ File::File
 grid
 Arrays::sort
 panel
-ArrayUtils::isSorted
 GridBagLayout::GridBagLayout
+ArrayUtils::isSorted
 Calendar::getTimeZone
+Panel::Panel
 Files::copy
 Calendar::setTimeZone
-Panel::Panel
 FileUtils::copyFile
 FileUtils::copyFileToDirectory
-Panel::new

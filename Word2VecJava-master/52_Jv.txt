@@ -6,7 +6,7 @@ FileInputStream::FileInputStream BufferedInputStream::BufferedInputStream InputS
 URL::URL URLConnection::URLConnection URL::openConnection
 Socket::Socket
 HashMap::HashMap HashMap::put
-Thread::Thread Thread::currentThread Thread::setPriority Thread::MAX PRIORITY
+Thread::Thread Thread::currentThread Thread::setPriority
 Properties::Properties Properties::setProperty
 File::File File::exists
 Thread::Thread Thread::currentThread Thread::getId
@@ -23,7 +23,7 @@ FileInputStream::FileInputStream DataInputStream::DataInputStream
 File::File File::renameTo
 File::File File::File FileUtils::moveFile
 FileInputStream::FileInputStream FileInputStream::FileInputStream DataInputStream::DataInputStream DataInputStream::readUTF
-Thread::Thread Thread::currentThread Thread::setPriority Thread::MIN PRIORITY
+Thread::Thread Thread::currentThread Thread::setPriority
 BorderLayout::BorderLayout Panel::Panel Container::setLayout
 Arrays::sort
 Label::Label Panel::Panel Container::add

@@ -34,8 +34,8 @@ public class Word2VecExamples {
 	
 	/** Runs the example */
 	public static void main(String[] args) throws IOException, TException, UnknownWordException, InterruptedException {
-//		demoWord();
-		loadModel();
+		demoWord();
+//		loadModel();
 	}
 	
 	/** 
@@ -43,7 +43,7 @@ public class Word2VecExamples {
 	 * demo-word.sh example from the open source C implementation
 	 */
 	public static void demoWord() throws IOException, TException, InterruptedException, UnknownWordException {
-		File f = new File("dotnet.l");
+		File f = new File("java-apache.l");
 		if (!f.exists())
 	       	       throw new IllegalStateException("Please download and unzip the text8 example from http://mattmahoney.net/dc/text8.zip");
 		List<String> read = Common.readToList(f);
@@ -55,7 +55,7 @@ public class Word2VecExamples {
 		});
 		
 		Word2VecModel model = Word2VecModel.trainer()
-				.setMinVocabFrequency(2)
+				.setMinVocabFrequency(1)
 				.useNumThreads(20)
 				.setWindowSize(7)
 				.type(NeuralNetworkType.CBOW)
@@ -77,7 +77,7 @@ public class Word2VecExamples {
 
 		// Alternatively, you can write the model to a bin file that's compatible with the C
 		// implementation.
-		try(final OutputStream os = Files.newOutputStream(Paths.get("text8.bin_jdknet"))) {
+		try(final OutputStream os = Files.newOutputStream(Paths.get("text8.bin"))) {
 			model.toBinFile(os);
 		}
 		
@@ -88,7 +88,7 @@ public class Word2VecExamples {
 	public static void loadModel() throws IOException, TException, UnknownWordException {
 		final Word2VecModel model;
 		try (ProfilingTimer timer = ProfilingTimer.create(LOG, "Loading model")) {
-			String json = Common.readFileToString(new File("text8.model_jdknet"));
+			String json = Common.readFileToString(new File("text8.model"));
 			model = Word2VecModel.fromThrift(ThriftUtils.deserializeJson(new Word2VecModelThrift(), json));
 		}
 		interact(model.forSearch(), new SearcherImpl(model));
@@ -140,12 +140,13 @@ public class Word2VecExamples {
 				String[] numbInputs = word.split("\\s");
 				
 				if(numbInputs.length == 1) {
-					List<Match> matches = searcher.getMatches(word, 100);
-					for (Match match : matches) {
-						if(match.match().contains("::"))
-							System.out.println(match.match());
-					}
-//					System.out.println(Strings.joinObjects("\n", matches));
+					List<Match> matches = searcher.getMatches(word, 300);
+//					for (Match match : matches) {
+////						if(match.match().contains("::"))
+//						if(match.match().contains("CS::"))
+//							System.out.println(match.match());
+//					}
+					System.out.println(Strings.joinObjects("\n", matches));
 				}
 				else if(numbInputs.length == 3) {
 					double[] diff = searchImpl.getVectorFrom3Words(numbInputs[0], numbInputs[1], numbInputs[2]);
@@ -159,10 +160,20 @@ public class Word2VecExamples {
 				}
 				else {
 					double[] average = searchImpl.getAverageVector(numbInputs);
-					List<Match> matches = searcher.getMatches(average, 20);
+					List<Match> matches = searcher.getMatches(average, 100);
 					for (Match match : matches) {
-						if(match.match().contains("::"))
-							System.out.println(match.match());
+//						if(word.contains("CS::")) { //C#
+////							if(match.match().contains("::") && !match.match().contains("CS::"))
+//								System.out.println(match.match());
+//						}
+//						else if(word.contains("::")) { // Java 
+//							if(match.match().contains("CS::"))
+//								System.out.println(match.match());
+//						}
+//						else { //word
+							if(match.match().contains("::"))
+								System.out.println(match.match());
+//						}
 					}
 				}
 			}
