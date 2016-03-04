@@ -170,21 +170,6 @@ public class Word2VecProcessingJava {
 		}
 	}
 	
-	public static void calculateSpearmanRHO()  throws IOException, TException, InterruptedException, UnknownWordException {
-		try {
-			Word2VecModel model = Word2VecModel.fromBinFile(new File("text8.bin"));
-			
-			// read survey data 
-			
-			// pre-process to get API under Word2Vec format ::
-			
-			// write to file
-		}
-		catch(Exception e){
-
-		}
-	}
-	
 	public static void calculateSpearmanRHO() throws IOException, TException, InterruptedException, UnknownWordException {
 
 		try {
