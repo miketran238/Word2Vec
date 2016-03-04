@@ -63,8 +63,9 @@ public class Word2VecProcessingJava {
 
 //				demoWordWithMath();
 //		demoWordDisplay1();
-		demoWordDisplay2();
+//		demoWordDisplay2();
 //		retrieveAPISequence();
+		calculateSpearmanRHO();
 
 	}
 
@@ -180,6 +181,36 @@ public class Word2VecProcessingJava {
 			// write to file
 		}
 		catch(Exception e){
+
+		}
+	}
+	
+	public static void calculateSpearmanRHO() throws IOException, TException, InterruptedException, UnknownWordException {
+
+		try {
+			Word2VecModel model = Word2VecModel.fromBinFile(new File("text8.bin"));
+			SearcherImpl searchImpl = new SearcherImpl(model);
+			
+			String [] pairTermAPIs = MatrixUtils.simpleReadLines(new File("Survey_Eng-API_1.txt"));
+			
+			for(String pair : pairTermAPIs) {
+				// This tube includes term-API-score
+				String[] splitted = pair.split("\\s");
+				String term = splitted[0];
+				String fqnAPI = splitted[1];
+//				String[] splittedName = fqnAPI.split("\\.");
+//				int length = splittedName.length;
+//				String formattedAPI = splittedName[length-2] + "::" + splittedName[length-1]; 
+//				Double score = Double.parseDouble(splitted[2]);
+				
+				
+				// calculate cosine distance
+				Double cosine = searchImpl.cosineDistance(term, fqnAPI);
+				System.out.println(term + "\t" + fqnAPI + "\t" + cosine);
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
 
 		}
 	}
@@ -534,7 +565,7 @@ public class Word2VecProcessingJava {
 		}
 		
 		// Check whether for each English text its expected code sequence belongs to its top list
-		int K = 4;
+		int K = 5;
 		
 		int count = 0;
 		for(String text : wordVectors.keySet()) {
