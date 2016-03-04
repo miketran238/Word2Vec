@@ -1,0 +1,10 @@
+InputStreamReader::InputStreamReader
+InputStream::InputStream
+OutputStreamWriter::OutputStreamWriter
+OutputStream::OutputStream
+Double::parseDouble
+String::String
+Integer::Integer 
+StringBuilder::append
+CharSequence::CharSequence
+StringBuffer::append
