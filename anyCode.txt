@@ -1,0 +1,90 @@
+copy file fname to destination
+
+load class ”MyClass.class”
+make file
+write ”hello” to file ”text.txt”
+
+
+
+new buffered stream ”text.txt”
+
+
+open connection ”http://www.oracle.com/”
+create socket ”http://www.oracle.com/” 80
+put a pair (”Mike”,”+41-345-89-23”) into a map
+set thread max priority
+set property ”gate.home” to value ”http://gate.ac.uk/”
+does the file ”text.txt” exist
+
+get thread id
+join threads
+delete file ”text.txt”
+print exception ex stack trace
+is ”text.txt” directory
+get thread stack trace
+read line by line file ”text.txt”
+set time zone to ”GMT”
+
+
+
+free memory
+total memory
+
+new data stream ”text.txt”
+rename file ”text1.txt” to ”text2.txt”
+move file ”text1.txt” to ”text2.txt”
+
+read utf from the file ”text.txt”
+
+
+
+
+set thread min priority
+create panel and set layout to border
+sort array
+add label ”Names:” to panel
+
+----
+write 2015 to data ouput stream ”text.txt”
+get date when file ”text.txt” was last time modified
+check file ”text.txt” ”read” permission
+read lines with numbers from file ”text.txt”
+
+read from console
+is file ”text.txt” data available
+
+get double value x
+write object o to file output stream ”data.obj”
+
+create bit set and set its 5th element to true
+accept request on port 80
+
+
+thread group
+create panel and set layout to grid
+get screen size
+get splash screen graphics
+
+
+
+get display refresh rate
+
+
+
+get keystroke modifiers
+generate ”RSA” private key
+
+
+
+reverse list
+
+intersection of rectangle 4 5 with rectangle 3 2
+set cursor over label to hand
+read big integer from console
+delete file ”text.txt” when JVM terminates
+
+get date instance for Germany
+
+
+
+
