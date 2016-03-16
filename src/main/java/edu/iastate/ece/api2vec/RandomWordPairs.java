@@ -171,8 +171,8 @@ public class RandomWordPairs {
 		long randIdx1 = 0;
 		long randIdx2 = 0;
 		for(int i = 0; i < size; i ++) {
-			int rd1 = (new Random()).nextInt(1000);
-			int rd2 = (new Random()).nextInt(1000);
+			int rd1 = 0;
+			int rd2 = 0;
 			while (true) {
 				randIdx1 = incrementRandom(randIdx1);
 				randIdx2 = incrementRandom(randIdx2);
