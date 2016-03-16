@@ -176,22 +176,22 @@ public class Word2VecProcessingJava {
 			Word2VecModel model = Word2VecModel.fromBinFile(new File("text8.bin"));
 			SearcherImpl searchImpl = new SearcherImpl(model);
 			
-			String [] pairTermAPIs = MatrixUtils.simpleReadLines(new File("Survey_Eng-API_1.txt"));
+			String [] pairTermAPIs = MatrixUtils.simpleReadLines(new File("Survey_Eng-API.txt"));
 			
 			for(String pair : pairTermAPIs) {
 				// This tube includes term-API-score
 				String[] splitted = pair.split("\\s");
 				String term = splitted[0];
 				String fqnAPI = splitted[1];
-//				String[] splittedName = fqnAPI.split("\\.");
-//				int length = splittedName.length;
-//				String formattedAPI = splittedName[length-2] + "::" + splittedName[length-1]; 
+				String[] splittedName = fqnAPI.split("\\.");
+				int length = splittedName.length;
+				String formattedAPI = splittedName[length-2] + "::" + splittedName[length-1]; 
 //				Double score = Double.parseDouble(splitted[2]);
 				
 				
 				// calculate cosine distance
-				Double cosine = searchImpl.cosineDistance(term, fqnAPI);
-				System.out.println(term + "\t" + fqnAPI + "\t" + cosine);
+				Double cosine = searchImpl.cosineDistance(term, formattedAPI);
+				System.out.println(cosine);
 			}
 		}
 		catch(Exception e){
