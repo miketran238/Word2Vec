@@ -38,6 +38,14 @@ public class RandomWordPairs {
 	public static void main(String[] args) {
 		RandomWordPairs randomizer = new RandomWordPairs();
 		randomizer.readAnyCodeExamples();
+		
+		long nextRandom = 2;
+		int window = 52; // number of possible pairs
+		for(int i = 0; i < 52; i ++) {
+			nextRandom = incrementRandom(nextRandom);
+			int b = (int)((nextRandom % window) + window) % window;
+			System.out.println(b);
+		}
 	}
 	
 	public void createUnitPairs() {
@@ -85,7 +93,7 @@ public class RandomWordPairs {
 	
 	public void readAnyCodeExamples() {
 		/* English queries */
-		String [] englishText = MatrixUtils.simpleReadLines(new File("52_trunc_API.txt"));
+		String [] englishText = MatrixUtils.simpleReadLines(new File("52_trunc_En.txt"));
 		List<String> wordList = new ArrayList<>();
 		HashSet<String> hashedWordList = new HashSet<>();
 		for(String sentence : englishText) {
@@ -100,7 +108,7 @@ public class RandomWordPairs {
 		System.out.println("Number of (duplicate) words " + wordList.size() + "/" + hashedWordList.size());
 		
 		/* API sequence*/
-		String [] APISequences = MatrixUtils.simpleReadLines(new File("52_trunc_API.txt"));
+		String [] APISequences = MatrixUtils.simpleReadLines(new File("52_trunc_fqnAPI.txt"));
 		List<String> APIList = new ArrayList<>();
 		HashSet<String> hashedAPIList = new HashSet<>();
 		for(String sequence : APISequences) {
@@ -117,7 +125,8 @@ public class RandomWordPairs {
 //		}
 		
 		/* Generate random pairs of words and API and APIs*/
-		generateRandomPairs(wordList, APIList, 100);
+//		generateRandomPairs(wordList, APIList, 100);
+		generatePseudoRandomPairs(wordList, APIList, 100);
 	}
 	
 	public void generateRandomPairs(List<String> pairList, int size) {
@@ -155,6 +164,38 @@ public class RandomWordPairs {
 			String API = APIList.get(apiRandonmizer.nextInt(APIList.size()));
 			System.out.println(word + "\t" + API);
 		}
+	}
+	
+	public void generatePseudoRandomPairs(List<String> wordList, List<String> APIList, int size) {
+		Hashtable<Integer, Double> usedPairs = new Hashtable<>();
+		long randIdx1 = 0;
+		long randIdx2 = 0;
+		for(int i = 0; i < size; i ++) {
+			int rd1 = (new Random()).nextInt(1000);
+			int rd2 = (new Random()).nextInt(1000);
+			while (true) {
+				randIdx1 = incrementRandom(randIdx1);
+				randIdx2 = incrementRandom(randIdx2);
+				
+				int window1 = wordList.size();
+				rd1 = (int)((randIdx1 % window1) + window1) % window1;
+				
+				int window2 = APIList.size();
+				rd2 = (int)((randIdx1 % window2) + window2) % window2;
+				
+				if(!usedPairs.containsKey(rd1 + 1000 * rd2)) { // occurs if and only 2 two numbers have been already generated
+					break;
+				}
+			}
+			String word = wordList.get(rd1);
+			String API = APIList.get(rd2);
+			usedPairs.put(rd1 + 1000 * rd2, 0.0);
+			System.out.println(word + "\t" + API);
+		}
+	}
+	
+	static long incrementRandom(long r) {
+		return r * 25_214_903_917L + 11;
 	}
 
 }
