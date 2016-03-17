@@ -14,6 +14,11 @@ import com.jujutsu.utils.MatrixUtils;
 
 public class RandomWordPairs {
 	
+	public class RandomPair {
+		String word;
+		String API;
+	}
+	
 	private static Hashtable<String, Double> stopwordList = new Hashtable<>();
 	static {
 		Double dummny = new Double(0);
