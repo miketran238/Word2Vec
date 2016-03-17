@@ -170,6 +170,24 @@ public class Word2VecProcessingJava {
 		}
 	}
 	
+	public static String getMappedAPI(String API, Word2VecModel model) {
+		try {
+//			Word2VecModel model = Word2VecModel.fromBinFile(new File("text8.bin"));
+			Searcher searcher = model.forSearch();
+			
+			List<Match> matches = searcher.getMatches(API, 100);
+			for(Match match : matches) {
+				String crossLibAPI = match.toString();
+				if(crossLibAPI.contains("apache::")) {
+					return crossLibAPI;
+				}
+			}
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	public static void calculateSpearmanRHO() throws IOException, TException, InterruptedException, UnknownWordException {
 
 		try {
@@ -573,7 +591,7 @@ public class Word2VecProcessingJava {
 		// Calculate MRR and thing like that
 	}
 	
-	private static LinkedHashMap<String, Double> sortMap(LinkedHashMap<String, Double> unsortedMap) {
+	public static LinkedHashMap<String, Double> sortMap(LinkedHashMap<String, Double> unsortedMap) {
 		List<Entry<String, Double>> list = new LinkedList<>(unsortedMap.entrySet());
 		
 		Collections.sort(list, new Comparator<Entry<String, Double>>() {

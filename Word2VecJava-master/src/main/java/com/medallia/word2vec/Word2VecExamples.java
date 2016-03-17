@@ -43,7 +43,7 @@ public class Word2VecExamples {
 	 * demo-word.sh example from the open source C implementation
 	 */
 	public static void demoWord() throws IOException, TException, InterruptedException, UnknownWordException {
-		File f = new File("java-apache.l");
+		File f = new File("java-apache-2.l");
 		if (!f.exists())
 	       	       throw new IllegalStateException("Please download and unzip the text8 example from http://mattmahoney.net/dc/text8.zip");
 		List<String> read = Common.readToList(f);
@@ -139,7 +139,7 @@ public class Word2VecExamples {
 				}
 				String[] numbInputs = word.split("\\s");
 				
-				if(numbInputs.length == 1) {
+				if(numbInputs.length == 2) {
 					List<Match> matches = searcher.getMatches(word, 300);
 //					for (Match match : matches) {
 ////						if(match.match().contains("::"))
@@ -162,18 +162,18 @@ public class Word2VecExamples {
 					double[] average = searchImpl.getAverageVector(numbInputs);
 					List<Match> matches = searcher.getMatches(average, 100);
 					for (Match match : matches) {
-//						if(word.contains("CS::")) { //C#
-////							if(match.match().contains("::") && !match.match().contains("CS::"))
-//								System.out.println(match.match());
-//						}
-//						else if(word.contains("::")) { // Java 
-//							if(match.match().contains("CS::"))
-//								System.out.println(match.match());
-//						}
-//						else { //word
+						if(word.contains("apache::")) { // Apache
+							if(match.match().contains("jdk::"))
+								System.out.println(match.match());
+						}
+						if(word.contains("jdk::")) { // Java 
+							if(match.match().contains("apache::"))
+								System.out.println(match.match());
+						}
+						else { //word
 							if(match.match().contains("::"))
 								System.out.println(match.match());
-//						}
+						}
 					}
 				}
 			}
