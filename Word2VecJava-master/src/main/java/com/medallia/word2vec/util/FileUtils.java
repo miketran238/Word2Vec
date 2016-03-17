@@ -1,15 +1,17 @@
 package com.medallia.word2vec.util;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileFilter;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
 import com.google.common.base.Function;
-
 import com.google.common.base.Strings;
 
 /**
@@ -101,5 +103,23 @@ public final class FileUtils {
 	/** @return A random temporary folder that can be used for file-system operations testing */
 	public static File getRandomTemporaryFolder(String prefix, String suffix) {
 		return new File(System.getProperty("java.io.tmpdir"), Strings.nullToEmpty(prefix) + UUID.randomUUID().toString() + Strings.nullToEmpty(suffix));
+	}
+	
+	public static Object readObjectFile(String file) {
+		try {
+			FileInputStream fin = new FileInputStream(file);
+			BufferedInputStream bin = new BufferedInputStream(fin, 1048576);
+			ObjectInputStream ois = new ObjectInputStream(bin);
+			
+			Object object = ois.readObject();
+			ois.close();
+			bin.close();
+			fin.close();
+			
+			return object;
+		} catch(Exception ex) {
+			ex.printStackTrace();
+			return null;
+		}
 	}
 }
