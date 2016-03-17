@@ -19,6 +19,8 @@ public class RandomWordPairs {
 		String API;
 	}
 	
+	private HashMap<String, Integer> genWordAPIPairs = new HashMap<>();
+	
 	private static Hashtable<String, Double> stopwordList = new Hashtable<>();
 	static {
 		Double dummny = new Double(0);
@@ -41,19 +43,32 @@ public class RandomWordPairs {
 	}
 	
 	public static void main(String[] args) {
+		HashMap<String, Integer> genWordAPIPairs = new HashMap<>();
+		genWordAPIPairs.put("Thanh", 0);
+		
+		String thanh = "Thanh";
+		genWordAPIPairs.put(thanh, 0);
+		
+		if(genWordAPIPairs.containsKey(thanh))
+			System.out.println("OK");
+		
 		RandomWordPairs randomizer = new RandomWordPairs();
-		randomizer.readAnyCodeExamples();
+		/* First, sample crossing pairs to get half of the needed samples. These would be irrelevant pairs in some certain sense */
+		randomizer.sampleFromCrossingPairs();
+		
+		/* Second, sample crossing pairs to get half of the needed samples to get more closely related pairs */
+		randomizer.sampleFromCorrespondingPairs();
 		
 		long nextRandom = 2;
 		int window = 52; // number of possible pairs
 		for(int i = 0; i < 52; i ++) {
 			nextRandom = incrementRandom(nextRandom);
 			int b = (int)((nextRandom % window) + window) % window;
-			System.out.println(b);
+//			System.out.println(b);
 		}
 	}
 	
-	public void createUnitPairs() {
+	public void sampleFromCorrespondingPairs() {
 		/* Read database of corresponding text and code sequences and store a mapping data (String, String) */
 		List<String> wordAPIPairSouce = new ArrayList<>();
 		try {
@@ -91,12 +106,12 @@ public class RandomWordPairs {
 			ex.printStackTrace();
 		}
 		
-		System.out.println("Number of (duplicate) word-API pairs " + wordAPIPairSouce.size());
-		generateRandomPairs(wordAPIPairSouce, 100);
+//		System.out.println("Number of (duplicate) word-API pairs " + wordAPIPairSouce.size());
+		generateRandomPairs(wordAPIPairSouce, 50);
 	}
 	
-	
-	public void readAnyCodeExamples() {
+	/* This samples word-API pairs crossing the sentence pairs */
+	public void sampleFromCrossingPairs() {
 		/* English queries */
 		String [] englishText = MatrixUtils.simpleReadLines(new File("52_trunc_En.txt"));
 		List<String> wordList = new ArrayList<>();
@@ -125,13 +140,9 @@ public class RandomWordPairs {
 		}
 		System.out.println("Number of (duplicate) API elements " + APIList.size()+ "/" + hashedAPIList.size());
 		
-//		for(String code : hashedAPIList) {
-//			System.out.println(code.replace("::", "."));
-//		}
-		
 		/* Generate random pairs of words and API and APIs*/
-//		generateRandomPairs(wordList, APIList, 100);
-		generatePseudoRandomPairs(wordList, APIList, 100);
+		generateRandomPairs(wordList, APIList, 50);
+//		generatePseudoRandomPairs(wordList, APIList, 50);
 	}
 	
 	public void generateRandomPairs(List<String> pairList, int size) {
@@ -141,16 +152,20 @@ public class RandomWordPairs {
 			int randIdx = 0;
 			while (true) {
 				randIdx = pairRandonmizer.nextInt(pairList.size());
-				if(!usedPairs.containsKey(randIdx)) {
+				String pair = pairList.get(randIdx);
+				if(!usedPairs.containsKey(randIdx) || !genWordAPIPairs.containsKey(pair)) {
 					usedPairs.put(randIdx, new Double(0.0));
 					break;
 				}
 			}
 			String pair = pairList.get(randIdx);
+			genWordAPIPairs.put(pair, 0);
+			/* Put the first list based on */
 			System.out.println(pair);
 		}
 	}
 	
+	/* This samples word-API pairs from terms and APIs in the same sentence pairs (bipartite choosing) */
 	public void generateRandomPairs(List<String> wordList, List<String> APIList, int size) {
 		Random wordRandonmizer = new Random();
 		Random apiRandonmizer = new Random();
@@ -161,16 +176,26 @@ public class RandomWordPairs {
 			while (true) {
 				randIdx1 = wordRandonmizer.nextInt(wordList.size());
 				randIdx2 = apiRandonmizer.nextInt(APIList.size());
-				if(!usedPairs.containsKey(randIdx1 + 1000 * randIdx2)) { // occurs if and only 2 two numbers have been already generated
+				
+				String word = wordList.get(randIdx1);
+				String API = APIList.get(randIdx2);
+				
+//				if(!usedPairs.containsKey(randIdx1 + 1000 * randIdx2)) { // occurs if and only 2 two numbers have been already generated
+//					break;
+//				}
+				
+				if(!genWordAPIPairs.containsKey((word + "\t" + API))) {
 					break;
 				}
 			}
-			String word = wordList.get(wordRandonmizer.nextInt(wordList.size()));
-			String API = APIList.get(apiRandonmizer.nextInt(APIList.size()));
+			String word = wordList.get(randIdx2);
+			String API = APIList.get(randIdx2);
+			genWordAPIPairs.put((word + "\t" + API), 0);
 			System.out.println(word + "\t" + API);
 		}
 	}
 	
+	/* This samples word-API pairs from terms and APIs in the same sentence pairs (bipartite choosing) */
 	public void generatePseudoRandomPairs(List<String> wordList, List<String> APIList, int size) {
 		Hashtable<Integer, Double> usedPairs = new Hashtable<>();
 		long randIdx1 = 0;
@@ -188,13 +213,21 @@ public class RandomWordPairs {
 				int window2 = APIList.size();
 				rd2 = (int)((randIdx1 % window2) + window2) % window2;
 				
-				if(!usedPairs.containsKey(rd1 + 1000 * rd2)) { // occurs if and only 2 two numbers have been already generated
+//				if(!usedPairs.containsKey(rd1 + 1000 * rd2)) { // occurs if and only 2 two numbers have been already generated
+//					break;
+//				}
+
+				String word = wordList.get(rd1);
+				String API = APIList.get(rd2);
+				if(!genWordAPIPairs.containsKey((word + "\t" + API))) {
 					break;
 				}
 			}
+			
 			String word = wordList.get(rd1);
 			String API = APIList.get(rd2);
 			usedPairs.put(rd1 + 1000 * rd2, 0.0);
+			genWordAPIPairs.put((word + "\t" + API), 0);
 			System.out.println(word + "\t" + API);
 		}
 	}
