@@ -188,7 +188,7 @@ public class RandomWordPairs {
 					break;
 				}
 			}
-			String word = wordList.get(randIdx2);
+			String word = wordList.get(randIdx1);
 			String API = APIList.get(randIdx2);
 			genWordAPIPairs.put((word + "\t" + API), 0);
 			System.out.println(word + "\t" + API);
