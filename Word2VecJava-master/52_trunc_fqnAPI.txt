@@ -42,6 +42,6 @@ java.awt.GridBagLayout.GridBagLayout
 java.util.List.List java.util.Collections.reverse
 java.awt.Rectangle.Rectangle java.awt.Rectangle.intersection
 java.awt.Cursor.Cursor java.awt.Cursor.getPredefinedCursor java.awt.Component.setCursor
-java.io.InputStream.InputStream java.io.Scanner.Scanner java.io.Scanner.nextBigInteger
+java.io.InputStream.InputStream java.util.Scanner.Scanner java.util.Scanner.nextBigInteger
 java.io.File.File java.io.File.deleteOnExit
 java.text.DateFormat.getDateTimeInstance

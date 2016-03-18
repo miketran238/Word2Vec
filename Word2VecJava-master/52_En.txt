@@ -27,7 +27,7 @@ set thread min prioriti
 creat panel set layout border
 sort array
 add label panel
-write data ouput stream
+write data output stream
 get date file time modifi
 check file permiss
 read line number file

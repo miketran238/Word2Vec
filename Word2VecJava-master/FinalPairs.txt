@@ -95,3 +95,6 @@ data	java.io.FileInputStream.FileInputStream
 read	java.io.InputStreamReader.InputStreamReader
 destin	java.io.InputStreamReader.InputStreamReader
 integ	java.io.Scanner.nextBigInteger
+array	java.io.File.File
+layout	java.awt.Panel.Panel
+sort	java.util.Arrays.sort

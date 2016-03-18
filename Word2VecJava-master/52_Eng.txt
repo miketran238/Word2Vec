@@ -27,7 +27,7 @@ set thread min priority
 create panel and set layout to border
 sort array
 add label to panel
-write to data ouput stream
+write to data output stream
 get date when file was last time modified
 check file permission
 read lines with numbers from file

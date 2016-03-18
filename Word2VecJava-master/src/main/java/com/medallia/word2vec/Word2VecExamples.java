@@ -34,8 +34,8 @@ public class Word2VecExamples {
 	
 	/** Runs the example */
 	public static void main(String[] args) throws IOException, TException, UnknownWordException, InterruptedException {
-		demoWord();
-//		loadModel();
+//		demoWord();
+		loadModel();
 	}
 	
 	/** 
@@ -43,7 +43,7 @@ public class Word2VecExamples {
 	 * demo-word.sh example from the open source C implementation
 	 */
 	public static void demoWord() throws IOException, TException, InterruptedException, UnknownWordException {
-		File f = new File("java-apache-2.l");
+		File f = new File("java-apache.l");
 		if (!f.exists())
 	       	       throw new IllegalStateException("Please download and unzip the text8 example from http://mattmahoney.net/dc/text8.zip");
 		List<String> read = Common.readToList(f);
@@ -58,7 +58,7 @@ public class Word2VecExamples {
 				.setMinVocabFrequency(1)
 				.useNumThreads(20)
 				.setWindowSize(7)
-				.type(NeuralNetworkType.CBOW)
+				.type(NeuralNetworkType.TopicCBOW)
 				.setLayerSize(100)
 				.useNegativeSamples(25)
 				.setDownSamplingRate(1e-4)
