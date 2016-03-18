@@ -43,5 +43,5 @@ revers list
 intersect rectangl rectangl
 set cursor label hand
 read big integ consol
-delet file jvm termin
+delet file termin
 get date instanc

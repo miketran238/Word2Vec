@@ -2,11 +2,13 @@ package edu.iastate.ece.api2vec;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -19,7 +21,7 @@ public class RandomWordPairs {
 		String API;
 	}
 	
-	private HashMap<String, Integer> genWordAPIPairs = new HashMap<>();
+	public HashMap<String, Integer> genWordAPIPairs = new HashMap<>();
 	
 	private static Hashtable<String, Double> stopwordList = new Hashtable<>();
 	static {
@@ -40,6 +42,8 @@ public class RandomWordPairs {
 		stopwordList.put("set", dummny);
 		stopwordList.put("class", dummny);
 		stopwordList.put("object", dummny);
+		stopwordList.put("creat", dummny);
+		stopwordList.put("instanc", dummny);
 	}
 	
 	public static void main(String[] args) {
@@ -58,6 +62,14 @@ public class RandomWordPairs {
 		
 		/* Second, sample crossing pairs to get half of the needed samples to get more closely related pairs */
 		randomizer.sampleFromCorrespondingPairs();
+		
+		/* Shuffle to get random order */
+		List<Map.Entry<String, Integer>> list = new ArrayList<Map.Entry<String,Integer>>(randomizer.genWordAPIPairs.entrySet());
+		Collections.shuffle(list);
+		
+		for(Map.Entry<String, Integer> entry : list) {
+			System.out.println(entry.getKey());
+		}
 		
 		long nextRandom = 2;
 		int window = 52; // number of possible pairs
@@ -161,7 +173,7 @@ public class RandomWordPairs {
 			String pair = pairList.get(randIdx);
 			genWordAPIPairs.put(pair, 0);
 			/* Put the first list based on */
-			System.out.println(pair);
+//			System.out.println(pair);
 		}
 	}
 	
@@ -191,7 +203,7 @@ public class RandomWordPairs {
 			String word = wordList.get(randIdx1);
 			String API = APIList.get(randIdx2);
 			genWordAPIPairs.put((word + "\t" + API), 0);
-			System.out.println(word + "\t" + API);
+//			System.out.println(word + "\t" + API);
 		}
 	}
 	
@@ -228,7 +240,7 @@ public class RandomWordPairs {
 			String API = APIList.get(rd2);
 			usedPairs.put(rd1 + 1000 * rd2, 0.0);
 			genWordAPIPairs.put((word + "\t" + API), 0);
-			System.out.println(word + "\t" + API);
+//			System.out.println(word + "\t" + API);
 		}
 	}
 	

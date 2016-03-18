@@ -6,7 +6,7 @@ java.io.FileInputStream.FileInputStream java.io.BufferedInputStream.BufferedInpu
 java.net.URL.URL java.net.URLConnection.URLConnection java.net.URL.openConnection
 java.net.Socket.Socket
 java.util.HashMap.HashMap java.util.HashMap.put
-java.lang.Thread.Thread java.lang.Thread.currentThread java.lang.Thread.setPriority java.lang.Thread.MAX_PRIORITY
+java.lang.Thread.Thread java.lang.Thread.currentThread java.lang.Thread.setPriority
 java.util.Properties.Properties java.util.Properties.setProperty
 java.io.File.File java.io.File.exists
 java.lang.Thread.Thread java.lang.Thread.currentThread java.lang.Thread.getId
@@ -23,7 +23,7 @@ java.io.FileInputStream.FileInputStream java.io.DataInputStream.DataInputStream
 java.io.File.File java.io.File.renameTo
 java.io.File.File java.io.File.File org.apache.commons.io.FileUtils.moveFile
 java.io.FileInputStream.FileInputStream java.io.FileInputStream.FileInputStream java.io.DataInputStream.DataInputStream java.io.DataInputStream.readUTF
-java.lang.Thread.Thread java.lang.Thread.currentThread java.lang.Thread.setPriority java.lang.Thread.MIN_PRIORITY
+java.lang.Thread.Thread java.lang.Thread.currentThread java.lang.Thread.setPriority
 java.awt.Panel.Panel
 java.util.Arrays.sort
 java.awt.Label.Label java.awt.Panel.Panel
