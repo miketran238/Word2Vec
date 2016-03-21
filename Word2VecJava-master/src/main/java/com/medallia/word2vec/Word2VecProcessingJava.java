@@ -188,13 +188,37 @@ public class Word2VecProcessingJava {
 		return null;
 	}
 	
+	public static List<Match> getMappedAPIs(String API, Word2VecModel model) {
+		try {
+//			Word2VecModel model = Word2VecModel.fromBinFile(new File("text8.bin"));
+			Searcher searcher = model.forSearch();
+			
+			List<Match> matches = searcher.getMatches(API, 100);
+			
+			List<Match> apcMatches = new ArrayList<Searcher.Match>();
+			
+			int count = 0;
+			for(Match match : matches) {
+				String crossLibAPI = match.toString();
+				if(crossLibAPI.contains("apache::") && count++ < 10) {
+					apcMatches.add(match);
+				}
+			}
+			return apcMatches;
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
 	public static void calculateSpearmanRHO() throws IOException, TException, InterruptedException, UnknownWordException {
 
 		try {
 			Word2VecModel model = Word2VecModel.fromBinFile(new File("text8.bin"));
 			SearcherImpl searchImpl = new SearcherImpl(model);
 			
-			String [] pairTermAPIs = MatrixUtils.simpleReadLines(new File("FinalPairs.txt"));
+			String [] pairTermAPIs = MatrixUtils.simpleReadLines(new File("Survey_Eng-API.txt"));
 			
 			for(String pair : pairTermAPIs) {
 				// This tube includes term-API-score
@@ -208,8 +232,10 @@ public class Word2VecProcessingJava {
 				
 				
 				// calculate cosine distance
-				Double cosine = searchImpl.cosineDistance(term, formattedAPI);
-				System.out.println(term + "\t" + fqnAPI + "\t" + cosine);
+//				Double cosine = searchImpl.cosineDistance(term, formattedAPI);
+				Double euclide = searchImpl.euclideanDistance(term, formattedAPI);
+//				System.out.println(term + "\t" + fqnAPI + "\t" + cosine);
+				System.out.println(1/euclide);
 			}
 		}
 		catch(Exception e){

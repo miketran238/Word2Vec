@@ -34,8 +34,8 @@ public class Word2VecExamples {
 	
 	/** Runs the example */
 	public static void main(String[] args) throws IOException, TException, UnknownWordException, InterruptedException {
-//		demoWord();
-		loadModel();
+		demoWord();
+//		loadModel();
 	}
 	
 	/** 
@@ -164,15 +164,15 @@ public class Word2VecExamples {
 					for (Match match : matches) {
 						if(word.contains("apache::")) { // Apache
 							if(match.match().contains("jdk::"))
-								System.out.println(match.match());
+								System.out.println(match);
 						}
 						if(word.contains("jdk::")) { // Java 
 							if(match.match().contains("apache::"))
-								System.out.println(match.match());
+								System.out.println(match);
 						}
 						else { //word
 							if(match.match().contains("::"))
-								System.out.println(match.match());
+								System.out.println(match);
 						}
 					}
 				}

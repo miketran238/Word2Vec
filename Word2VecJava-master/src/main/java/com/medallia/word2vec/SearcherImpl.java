@@ -38,6 +38,11 @@ class SearcherImpl implements Searcher {
   @Override public double cosineDistance(String s1, String s2) throws UnknownWordException {
 	return calculateDistance(getVector(s1), getVector(s2));
   }
+  
+  public double euclideanDistance(String s1, String s2) throws UnknownWordException {
+	  return calculateDistance2(getVector(s1), getVector(s2));
+  }
+
 
   @Override public boolean contains(String word) {
 	return word2vectorOffset.containsKey(word);
@@ -186,4 +191,6 @@ class SearcherImpl implements Searcher {
 	  return String.format("%s [%s]", first, second);
 	}
   }
+
+
 }
