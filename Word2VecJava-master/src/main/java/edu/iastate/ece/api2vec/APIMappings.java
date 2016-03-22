@@ -116,7 +116,7 @@ public class APIMappings {
 				String fQualifiedName = fields[1];
 				Integer freq = Integer.parseInt(fields[2]);
 				
-				if(type.equals("method") && !fQualifiedName.contains("new")) {
+				if(/*type.equals("method") && */!fQualifiedName.contains("new")) {
 					String[] names = fQualifiedName.split("\\.");
 					int length = names.length;
 					String fmtAPI = "jdk::" + names[length-2] + "::" + names[length-1];
