@@ -232,10 +232,10 @@ public class Word2VecProcessingJava {
 				
 				
 				// calculate cosine distance
-//				Double cosine = searchImpl.cosineDistance(term, formattedAPI);
-				Double euclide = searchImpl.euclideanDistance(term, formattedAPI);
+				Double cosine = searchImpl.cosineDistance(term, formattedAPI);
+//				Double euclide = searchImpl.euclideanDistance(term, formattedAPI);
 //				System.out.println(term + "\t" + fqnAPI + "\t" + cosine);
-				System.out.println(1/euclide);
+				System.out.println(cosine);
 			}
 		}
 		catch(Exception e){

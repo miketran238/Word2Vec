@@ -59,7 +59,7 @@ public class Word2VecExamples {
 				.useNumThreads(20)
 				.setWindowSize(7)
 				.type(NeuralNetworkType.TopicCBOW)
-				.setLayerSize(100)
+				.setLayerSize(200)
 				.useNegativeSamples(25)
 				.setDownSamplingRate(1e-4)
 				.setNumIterations(5)
