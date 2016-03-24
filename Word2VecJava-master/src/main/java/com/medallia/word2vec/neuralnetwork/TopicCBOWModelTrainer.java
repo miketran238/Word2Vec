@@ -59,11 +59,12 @@ class TopicCBOWModelTrainer extends NeuralNetworkTrainer {
 				for (int a = b; a < window * 2 + 1 - b; a++) {
 					if (a == window)
 						continue;
-					// Thanh, want to predict the word at sentencePosition given (a-window) words before and after that word
+					// want to predict the word at sentencePosition given (a-window) words before and after that word
 					int c = (sentencePosition - window) + a; // sentencePosition - window is about to determine words in the context window
 					if (c < 0 || c >= sentenceLength)
 						continue;
 					int idx = huffmanNodes.get(sentence.get(c)).idx;
+					/// TODO: get rid of API already considered as the topic (already included in this window)
 					for (int d = 0; d < layer1_size; d++) {
 						neu1[d] += syn0[idx][d];
 					}
