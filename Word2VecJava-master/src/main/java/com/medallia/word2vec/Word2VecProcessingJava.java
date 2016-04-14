@@ -36,6 +36,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -63,9 +64,9 @@ public class Word2VecProcessingJava {
 
 //				demoWordWithMath();
 //		demoWordDisplay1();
-//		demoWordDisplay2();
+		demoWordDisplay2();
 //		retrieveAPISequence();
-		calculateSpearmanRHO();
+//		calculateSpearmanRHO();
 
 	}
 
@@ -218,7 +219,10 @@ public class Word2VecProcessingJava {
 			Word2VecModel model = Word2VecModel.fromBinFile(new File("text8.bin"));
 			SearcherImpl searchImpl = new SearcherImpl(model);
 			
-			String [] pairTermAPIs = MatrixUtils.simpleReadLines(new File("Survey_Eng-API.txt"));
+			Path currentRelativePath = Paths.get("");
+			String s = currentRelativePath.toAbsolutePath().toString();
+			
+			String [] pairTermAPIs = MatrixUtils.simpleReadLines(new File(s + "/data/survey/Survey_Eng-API.txt"));
 			
 			for(String pair : pairTermAPIs) {
 				// This tube includes term-API-score
@@ -232,10 +236,10 @@ public class Word2VecProcessingJava {
 				
 				
 				// calculate cosine distance
-//				Double cosine = searchImpl.cosineDistance(term, formattedAPI);
-				Double euclide = searchImpl.euclideanDistance(term, formattedAPI);
+				Double cosine = searchImpl.cosineDistance(term, formattedAPI);
+//				Double euclide = searchImpl.euclideanDistance(term, formattedAPI);
 //				System.out.println(term + "\t" + fqnAPI + "\t" + cosine);
-				System.out.println(1/euclide);
+				System.out.println(cosine);
 			}
 		}
 		catch(Exception e){
@@ -349,11 +353,13 @@ public class Word2VecProcessingJava {
 	
 	public static void writeLabelnValues(Word2VecModel model) {
 		Iterable<String> words = model.getVocab();
-		try{ 
-			FileWriter labelFW = new FileWriter("dataLabel.txt");
-			FileWriter valueFW = new FileWriter("dataValues.txt");
+		try{
+			Path currentRelativePath = Paths.get("");
+			String s = currentRelativePath.toAbsolutePath().toString();
+			FileWriter labelFW = new FileWriter(s + "/data/test/dataLabel.txt");
+			FileWriter valueFW = new FileWriter(s + "/data/test/dataValues.txt");
 			
-			String [] samples = MatrixUtils.simpleReadLines(new File("PCA.txt"));
+			String [] samples = MatrixUtils.simpleReadLines(new File(s + "/data/test/Code-Code_PCA_ASE.txt"));
 			HashSet<String> hashedSamples = new HashSet<String>();
 			for(String sample : samples) {
 				hashedSamples.add(sample);
@@ -455,8 +461,10 @@ public class Word2VecProcessingJava {
 	}
 
 	public static void pca_disp() {
-		double [][] X = MatrixUtils.simpleRead2DMatrix(new File("dataValues.txt"));
-		String [] labels = MatrixUtils.simpleReadLines(new File("dataLabel.txt"));
+		Path currentRelativePath = Paths.get("");
+		String s = currentRelativePath.toAbsolutePath().toString();
+		double [][] X = MatrixUtils.simpleRead2DMatrix(new File(s + "/data/test/dataValues.txt"));
+		String [] labels = MatrixUtils.simpleReadLines(new File(s + "/data/test/dataLabel.txt"));
 		String [] labelsType = new String[labels.length];
 
 		for (int i = 0; i < labels.length; i++) {
@@ -533,8 +541,11 @@ public class Word2VecProcessingJava {
 		/* Read database of corresponding text and code sequences and store a mapping data (String, String) */
 		LinkedHashMap<String, String> oracleData = new LinkedHashMap<>();
 		try {
-			Scanner textFR = new Scanner(new File("52_En.txt"));
-			Scanner apiFR = new Scanner(new File("52_Jv.txt"));
+			Path currentRelativePath = Paths.get("");
+			String s = currentRelativePath.toAbsolutePath().toString();
+			System.out.println("Current relative path is: " + s);
+			Scanner textFR = new Scanner(new File(s+ "/data/survey/52_En.txt"));
+			Scanner apiFR = new Scanner(new File(s+ "/data/survey/52_Jv.txt"));
 			
 			while(textFR.hasNextLine() && apiFR.hasNextLine()) {
 				String text = textFR.nextLine();

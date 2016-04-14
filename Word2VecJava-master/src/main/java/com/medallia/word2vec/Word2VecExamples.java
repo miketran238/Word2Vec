@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
@@ -34,8 +35,8 @@ public class Word2VecExamples {
 	
 	/** Runs the example */
 	public static void main(String[] args) throws IOException, TException, UnknownWordException, InterruptedException {
-		demoWord();
-//		loadModel();
+//		demoWord();
+		loadModel();
 	}
 	
 	/** 
@@ -43,7 +44,9 @@ public class Word2VecExamples {
 	 * demo-word.sh example from the open source C implementation
 	 */
 	public static void demoWord() throws IOException, TException, InterruptedException, UnknownWordException {
-		File f = new File("/data/train/java-apache.l");
+		Path currentRelativePath = Paths.get("");
+		String s = currentRelativePath.toAbsolutePath().toString();
+		File f = new File(s + "/data/train/java-apache.l");
 		if (!f.exists())
 	       	       throw new IllegalStateException("Please download and unzip the text8 example from http://mattmahoney.net/dc/text8.zip");
 		List<String> read = Common.readToList(f);
@@ -154,7 +157,7 @@ public class Word2VecExamples {
 						break;
 					List<Match> matches = searcher.getMatches(diff, 20);
 					for (Match match : matches) {
-						if(!match.match().contains("::"))
+						if(match.match().contains("::"))
 							System.out.println(match.match());
 					}
 				}
@@ -171,7 +174,7 @@ public class Word2VecExamples {
 								System.out.println(match);
 						}
 						else { //word
-							if(match.match().contains("::"))
+//							if(match.match().contains("::"))
 								System.out.println(match);
 						}
 					}
