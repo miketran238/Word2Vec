@@ -1,0 +1,117 @@
+C=7/10 - N=100
+Current relative path is: /Users/thanhnguyen/Workspace/Java/Word2Vec/Word2VecJava-master
+get keystrok modifi	AWTKeyStroke::getModifiers KeyEvent::getKeyModifiersText	1
+set cursor label hand	Cursor::Cursor Cursor::getPredefinedCursor Component::setCursor	1
+get splash screen graphic	SplashScreen::getSplashScreen SplashScreen::createGraphics	1
+delet file jvm termin	File::File File::deleteOnExit	1
+write file	File::File FileUtils::writeStringToFile	9
+delet file	File::File File::delete	3
+read utf file	FileInputStream::FileInputStream FileInputStream::FileInputStream DataInputStream::DataInputStream DataInputStream::readUTF	4
+get date file time modifi	File::File File::lastModified Date::Date Date::getTime	3
+free memori	Runtime::Runtime Runtime::getRuntime Runtime::freeMemory	2
+make file	File::File File::createNewFile	4
+set time zone gmt	TimeZone::TimeZone TimeZone::getTimeZone Calendar::Calendar Calendar::getInstance Calendar::setTimeZone	1
+creat bit set set element	BitSet::BitSet	1
+copi file destin	File::File File::File FileUtils::copyFile	1
+creat socket	Socket::Socket	1
+creat panel set layout grid	GridBagLayout::GridBagLayout Container::setLayout	2
+get date instanc	DateFormat::getDateTimeInstance	1
+print stack trace	Exception::Exception Throwable::printStackTrace Throwable::printStackTrace	1
+read consol	InputStream::InputStream InputStreamReader::InputStreamReader BufferedReader::BufferedReader BufferedReader::readLine	3
+generat rsa privat key	KeyPairGenerator::KeyPairGenerator KeyPairGenerator::getInstance KeyPair::KeyPair KeyPairGenerator::generateKeyPair KeyPair::getPrivate	1
+check file permiss	FilePermission::FilePermission AccessController::checkPermission	1
+get thread	Thread::Thread Thread::currentThread Thread::getId	3
+get display refresh rate	GraphicsEnvironment::GraphicsEnvironment GraphicsEnvironment::getLocalGraphicsEnvironment GraphicsEnvironment::getDefaultScreenDevice GraphicsDevice::getDisplayMode DisplayMode::getRefreshRate	1
+total memori	Runtime::Runtime Runtime::getRuntime Runtime::totalMemory	1
+data stream	FileInputStream::FileInputStream DataInputStream::DataInputStream	3
+thread group	Thread::Thread Thread::currentThread Thread::getThreadGroup	2
+get screen size	Toolkit::getDefaultToolkit Toolkit::getScreenSize	3
+get doubl valu	Double::valueOf Double::doubleValue	1
+sort array	Arrays::sort	1
+set thread min prioriti	Thread::Thread Thread::currentThread Thread::setPriority	1
+accept request port	ServerSocket::ServerSocket ServerSocket::accept	1
+join thread	Thread::Thread Thread::currentThread Thread::join	4
+intersect rectangl rectangl	Rectangle::Rectangle Rectangle::intersection	1
+set properti valu	Properties::Properties Properties::setProperty	1
+add label panel	Label::Label Panel::Panel Container::add	1
+renam file	File::File File::renameTo	1
+put pair map	HashMap::HashMap HashMap::put	1
+load	Thread::Thread Thread::currentThread ClassLoader::ClassLoader Thread::getContextClassLoader ClassLoader::loadClass	1
+revers list	List::List Collections::reverse	1
+file exist	File::File File::exists	9
+move file	File::File File::File FileUtils::moveFile	2
+set thread max prioriti	Thread::Thread Thread::currentThread Thread::setPriority	1
+connect	URL::URL URLConnection::URLConnection URL::openConnection	3
+read big integ consol	InputStream::InputStream Scanner::Scanner Scanner::nextBigInteger	9
+read line number file	FileInputStream::FileInputStream InputStreamReader::InputStreamReader LineNumberReader::LineNumberReader LineNumberReader::readLine	3
+get thread stack trace	Thread::currentThread Thread::getStackTrace	5
+creat panel set layout border	BorderLayout::BorderLayout Panel::Panel Container::setLayout	1
+write data output stream	FileOutputStream::FileOutputStream DataOutputStream::DataOutputStream DataOutputStream::write	5
+write object file output stream	FileOutputStream::FileOutputStream BufferedOutputStream::BufferedOutputStream ObjectOutputStream::ObjectOutputStream ObjectOutputStream::writeObject	2
+read line line file	File::File FileUtils::readLines	1
+buffer stream	FileInputStream::FileInputStream BufferedInputStream::BufferedInputStream InputStreamReader::InputStreamReader BufferedReader::BufferedReader 	1
+directori	File::File File::isDirectory	10
+file data avail	FileInputStream::FileInputStream DataInputStream::DataInputStream FilterInputStream::available	6
+29
+
+
+
+---- C=10, N = 200
+Current relative path is: /Users/thanhnguyen/Workspace/Java/Word2Vec/Word2VecJava-master
+get keystrok modifi	AWTKeyStroke::getModifiers KeyEvent::getKeyModifiersText	1
+set cursor label hand	Cursor::Cursor Cursor::getPredefinedCursor Component::setCursor	4
+get splash screen graphic	SplashScreen::getSplashScreen SplashScreen::createGraphics	1
+delet file jvm termin	File::File File::deleteOnExit	15
+write file	File::File FileUtils::writeStringToFile	4
+delet file	File::File File::delete	1
+read utf file	FileInputStream::FileInputStream FileInputStream::FileInputStream DataInputStream::DataInputStream DataInputStream::readUTF	4
+get date file time modifi	File::File File::lastModified Date::Date Date::getTime	2
+free memori	Runtime::Runtime Runtime::getRuntime Runtime::freeMemory	1
+make file	File::File File::createNewFile	4
+set time zone gmt	TimeZone::TimeZone TimeZone::getTimeZone Calendar::Calendar Calendar::getInstance Calendar::setTimeZone	1
+creat bit set set element	BitSet::BitSet	1
+copi file destin	File::File File::File FileUtils::copyFile	1
+creat socket	Socket::Socket	1
+creat panel set layout grid	GridBagLayout::GridBagLayout Container::setLayout	2
+get date instanc	DateFormat::getDateTimeInstance	2
+print stack trace	Exception::Exception Throwable::printStackTrace Throwable::printStackTrace	1
+read consol	InputStream::InputStream InputStreamReader::InputStreamReader BufferedReader::BufferedReader BufferedReader::readLine	6
+generat rsa privat key	KeyPairGenerator::KeyPairGenerator KeyPairGenerator::getInstance KeyPair::KeyPair KeyPairGenerator::generateKeyPair KeyPair::getPrivate	1
+check file permiss	FilePermission::FilePermission AccessController::checkPermission	1
+get thread	Thread::Thread Thread::currentThread Thread::getId	5
+get display refresh rate	GraphicsEnvironment::GraphicsEnvironment GraphicsEnvironment::getLocalGraphicsEnvironment GraphicsEnvironment::getDefaultScreenDevice GraphicsDevice::getDisplayMode DisplayMode::getRefreshRate	1
+total memori	Runtime::Runtime Runtime::getRuntime Runtime::totalMemory	6
+data stream	FileInputStream::FileInputStream DataInputStream::DataInputStream	1
+thread group	Thread::Thread Thread::currentThread Thread::getThreadGroup	1
+get screen size	Toolkit::getDefaultToolkit Toolkit::getScreenSize	37
+get doubl valu	Double::valueOf Double::doubleValue	1
+sort array	Arrays::sort	1
+set thread min prioriti	Thread::Thread Thread::currentThread Thread::setPriority	2
+accept request port	ServerSocket::ServerSocket ServerSocket::accept	2
+join thread	Thread::Thread Thread::currentThread Thread::join	9
+intersect rectangl rectangl	Rectangle::Rectangle Rectangle::intersection	1
+set properti valu	Properties::Properties Properties::setProperty	18
+add label panel	Label::Label Panel::Panel Container::add	1
+renam file	File::File File::renameTo	1
+put pair map	HashMap::HashMap HashMap::put	1
+load	Thread::Thread Thread::currentThread ClassLoader::ClassLoader Thread::getContextClassLoader ClassLoader::loadClass	1
+revers list	List::List Collections::reverse	1
+file exist	File::File File::exists	8
+move file	File::File File::File FileUtils::moveFile	6
+set thread max prioriti	Thread::Thread Thread::currentThread Thread::setPriority	1
+connect	URL::URL URLConnection::URLConnection URL::openConnection	2
+read big integ consol	InputStream::InputStream Scanner::Scanner Scanner::nextBigInteger	8
+read line number file	FileInputStream::FileInputStream InputStreamReader::InputStreamReader LineNumberReader::LineNumberReader LineNumberReader::readLine	6
+get thread stack trace	Thread::currentThread Thread::getStackTrace	8
+creat panel set layout border	BorderLayout::BorderLayout Panel::Panel Container::setLayout	2
+write data output stream	FileOutputStream::FileOutputStream DataOutputStream::DataOutputStream DataOutputStream::write	6
+write object file output stream	FileOutputStream::FileOutputStream BufferedOutputStream::BufferedOutputStream ObjectOutputStream::ObjectOutputStream ObjectOutputStream::writeObject	8
+read line line file	File::File FileUtils::readLines	10
+buffer stream	FileInputStream::FileInputStream BufferedInputStream::BufferedInputStream InputStreamReader::InputStreamReader BufferedReader::BufferedReader 	1
+directori	File::File File::isDirectory	1
+file data avail	FileInputStream::FileInputStream DataInputStream::DataInputStream FilterInputStream::available	12
+Top 1 25
+Top2 32
+Top3 32
+Top4 36
+Top5 37

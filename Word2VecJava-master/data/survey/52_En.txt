@@ -1,5 +1,5 @@
 copi file destin
-load class
+load
 make file
 write file
 buffer stream

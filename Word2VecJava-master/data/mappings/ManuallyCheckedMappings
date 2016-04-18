@@ -1,0 +1,76 @@
+jdk::ByteArrayOutputStream::toByteArray
+2-apache::Conversion::shortToByteArray [0.9406107464874791]
+
+jdk::File::delete
+1-apache::FileDeleteStrategy::deleteQuietly [0.9126814806926388]
+2-apache::FileDeleteStrategy::doDelete [0.9053226963960829]
+
+jdk::Map::keySet
+2-apache::SingletonMap::keySet [0.9282767130621996]
+9-apache::MultiValuedMap::keySet [0.9092188887853713]
+
+jdk::Enumeration::nextElement
+2-apache::IteratorEnumeration::hasMoreElements [0.9353126247535914]
+
+jdk::StringTokenizer::nextToken
+1-apache::StrTokenizer::nextToken [0.8917538232835349]
+
+
+jdk::InputStream::read
+1-apache::AutoCloseInputStream::read [0.8674353829446623]
+2-apache::IOUtils::read [0.7426305861611894]
+5-apache::TeeInputStream::read [0.7168104179425805]
+
+jdk::System::exit
+1-apache::FileCleaningTracker::exitWhenFinished [0.7162580326514351]
+4-apache::FileCleaner::exitWhenFinished [0.690149643783941]
+
+jdk::Pattern::matcher
+1-apache::StrMatcher::charSetMatcher [0.8756907821714369]
+2-apache::StrMatcher::trimMatcher [0.8723492180745046]
+(4-apache::Matcher::Matcher [0.8585010007552638])
+
+jdk::BufferedReader::readLine
+1-apache::CRLFLineReader::readLine [0.8649952534532549]
+
+jdk::Map::containsKey
+1-apache::AbstractHashedMap::containsKey [0.9054870975099975]
+
+jdk::Set::contains
+1-apache::TreeBidiMap::containsKey [0.8405466944581486]
+10-apache::SingletonMap::isEqualKey [0.8167204118529285]
+
+jdk::Random::nextInt
+3-apache::AbstractRandomGenerator::nextInt [0.8059830341537306]
+9-apache::RandomGenerator::nextInt [0.7721023929120169]
+
+jdk::Writer::write
+1-apache::NullWriter::write [0.8568257198883598]
+4-apache::LockableFileWriter::write [0.7956593586597831]
+6-apache::WriterOutputStream::write [0.7882196860816106]
+
+jdk::String::lastIndexOf
+3-apache::StringUtils::lastIndexOf [0.785269596551814]
+4-apache::StrBuilder::lastIndexOf [0.7794787316955841]
+6-apache::StrBuilder::indexOf [0.76967846672825]
+8-apache::StringUtils::indexOf [0.7591897173832503]
+
+jdk::String::replaceAll
+1-apache::StringUtils::replacePattern [0.8841981727352517]
+2-apache::StrBuilder::replaceAll [0.8566212846679345]
+3-apache::StrBuilder::replaceFirst [0.8555839192504017]
+9-apache::StringUtils::replaceEachRepeatedly [0.7867738507299556]
+10-apache::URIUtil::replace [0.7851638999720549]
+
+jdk::OutputStream::write
+1-apache::ChunkedOutputStream::write [0.8472616704796371]
+
+jdk::ResultSet::next
+1-apache::LineIterator::next [0.7050439063151293]
+4-apache::MultidimensionalCounter::next [0.6730837845215543]
+
+
+Top1 12/33
+Top2 15/33
+Top3 17/33
+Top10 17/33

@@ -39,6 +39,9 @@ class TopicCBOWModelTrainer extends NeuralNetworkTrainer {
 			for (int sentencePosition = 0; sentencePosition < sentenceLength; sentencePosition++) {
 				String word = sentence.get(sentencePosition);
 				HuffmanNode huffmanNode = huffmanNodes.get(word);
+				
+				/* Index of word being predicted */
+				int predIdx = huffmanNode.idx;
 
 				for (int c = 0; c < layer1_size; c++)
 					neu1[c] = 0;
@@ -104,8 +107,13 @@ class TopicCBOWModelTrainer extends NeuralNetworkTrainer {
 				
 				// hidden -> in
 				/* Also include topic token to update calculation */
-				for (int d = 0; d < layer1_size; d++)
+				for (int d = 0; d < layer1_size; d++) {
 					syn0[topicIdx][d] += neu1e[d];
+
+					/* Re-update the input vector of the output word that is predicted (using topic equation) 
+					 * Remove this if not efficient */
+//					syn0[predIdx][d] += cw * neu1e[d];
+				}
 				
 				for (int a = b; a < window * 2 + 1 - b; a++) {
 					if (a == window)
@@ -114,8 +122,12 @@ class TopicCBOWModelTrainer extends NeuralNetworkTrainer {
 					if (c < 0 || c >= sentenceLength)
 						continue;
 					int idx = huffmanNodes.get(sentence.get(c)).idx;
-					for (int d = 0; d < layer1_size; d++)
+					for (int d = 0; d < layer1_size; d++) {
 						syn0[idx][d] += neu1e[d];
+						/* Re-update the input vector of the output word that is predicted (using topic equation) 
+						 * Remove this if not efficient */
+//						syn0[predIdx][d] -= neu1e[d];
+					}
 				}
 			}
 		}
