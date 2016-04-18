@@ -1,0 +1,22 @@
+check object refer null
+use format flag negat number parenthes
+manipul locald local date object use temporaladjust tempor adjust
+manipul valu locald local date object
+fill array non default valu
+escap display percent sign printf statement
+find differ localdatetim local date time object
+find differ time
+pars negat number parenthes
+display negat number parenthes
+get date particular day specif
+add subtract date
+calcul differ date
+use time dayofweek day week enum
+format date time object
+insert element array given posit
+get length month repres date object
+know given year leap
+pars text string date time
+use time localdatetim local date time
+use time localtim local time
+use time locald local date

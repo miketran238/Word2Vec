@@ -1,0 +1,437 @@
+use format flag negat number parenthes
+manipul locald local date object use temporaladjust tempor adjust
+manipul valu locald local date object
+fill array non default valu
+find differ localdatetim local date time object
+find differ time
+pars negat number parenthes
+display negat number parenthes
+get date first particular day specif
+add subtract date
+calcul differ date
+use time dayofweek day week enum
+format date time object
+insert element array given posit
+get length month repres date object
+know given year leap
+pars text string date time
+use time localdatetim local date time
+use time localtim local time
+use time locald local date
+get date time
+decompress gzip zip file
+compress file gzip zip format
+use iter generic collect
+creat generic collect
+creat mysql sql databas programat
+establish connect databas properti
+get random key valu pair hashtabl
+write file use file newbufferedwrit buffer writer
+recurs list text file directori
+verifi digit signatur sign data
+split string number charact
+creat digit signatur sign data
+remov redund element path
+generat privat key
+pick random valu enum
+clear content array
+set valu file attribut
+revers order array element
+use priorityblockingqueu prioriti block queue
+use linkedblockingqueu link block queue
+read file use fileinputstream file input stream
+convert string date gmt timezon
+creat array uniqu valu
+destroy thread group
+check thread group destroy
+count activ thread group
+get number activ thread current
+get number activ thread group
+get thread group
+get state thread
+get avail currenc
+get pattern string simpledateformat date format
+get compon type array
+determin object repres array
+get direct superclass interfac
+check repres interfac type
+check repres primit type
+get regard name
+get current execut thread
+set get name thread
+check thread aliv
+check thread daemon
+count number captur group
+use reluct quantifi regex
+paus current thread
+use quantifi regex
+use captur group regex
+use relat oper
+use equal oper
+calcul length hypotenus
+calcul exponenti function
+get expon exponenti function
+creat custom
+use throw keyword declar
+handl use catch block
+break paragraph sentenc
+break text sentenc word
+sort string data use collationkey collat key
+sort array string data use rulebasedcol rule base collat
+chang date format symbol specifi local
+get format date specif pattern local
+get default date time format defin countri
+chang currenc symbol
+chang number format symbol
+chang decimalformat decim format pattern
+format number percentag string
+format number currenc string
+creat local object use variant
+get avail local languag
+use sortedmap sort map interfac
+convert vector array
+use shift oper
+use shift
+use unari bitwis complement oper
+remov element dequ
+add element dequ
+creat hashtabl iter content
+creat dequ use arraydequ array
+read vector object use enumer
+remov first last found element dequ
+creat last first dequ
+get host default timezon
+get timezon millisecond offset
+retriev avail schema databas
+creat port scanner program
+get maximum number concurr connect
+check driver jdbc compliant
+get jdbc driver properti
+check paramet valu null
+convert doubl valu int
+call store procedur return result set
+regist paramet callablestat callabl statement
+set queri timeout limit
+get peak live thread count
+get current number live thread
+get classpath
+get system properti
+get start time jvm
+get time jvm
+limit mysql sql queri result
+append replac content stringbuff string buffer
+set fetch size statement
+insert string stringbuff string buffer
+remov charact stringbuff string buffer
+get char valu string specifi posit
+determin string match pattern exact
+check string start pattern
+trim capac arraylist array list
+get process
+find replac string
+print file use default regist
+edit file use default regist
+open file use default regist
+launch user default mail client
+launch user default web browser
+get display imag applet
+get applet document url
+set maximum row read queri
+clear buffer use compact
+clear buffer use
+get signum function number
+rais number power
+calcul logarithm
+number
+calcul cube root squar number
+reread content buffer
+use trigonometr calcul
+convert angl radian degre
+get pi valu
+get minimum maximum valu number
+get absolut valu number
+read data buffer channel
+chang buffer mode write read
+write data buffer use put
+creat nio buffer
+calcul process execut time higher resolut
+sort string number ascend order
+read file byte array
+sort enumer
+sort linkedlist link list element
+get first last element linkedlist link list
+revers order linkedlist link list element
+remov item linkedlist link list
+insert item linkedlist link list
+add item begin end linkedlist link list
+remov first last item linkedlist link list
+retriev particular object linkedlist link list
+retriev linkedlist link list object use listiter iter
+retriev linkedlist link list object use iter
+creat linkedlist link list
+count occurr number array
+use doubl brace initi
+count occurr day date
+get enum constant valu correspond string
+get last item sortedset sort set
+get first item sortedset sort set
+generat uuid guid
+get mous number button
+get locat mous pointer
+convert util date sql
+get screen display mode
+get number avail screen
+format messag contain number
+format messag contain time
+format messag contain date
+creat roll log file
+limit size log file
+creat custom logger formatt
+prevent logger send log messag parent
+set formatt logger handler
+compar logger level sever
+get current level logger
+set logger log level
+set filter logger handler
+use logger consolehandl consol handler
+write log file
+log
+check messag loggabl
+obtain creat logger
+detect non ascii charact string
+creat temporari file
+add hour minut date
+format date use local base
+get modifi object
+creat object use constructor
+get constructor object
+get field object set valu
+get field object
+invok use
+get object
+execut extern command obtain result
+search collect element
+rotat element collect
+display file content hexadecim
+know date
+know date
+convert properti map
+creat multithread program
+get list file system root
+check directori empti
+get cryptograph secur provid
+creat thread implement runnabl interfac
+compar date
+suppresswarn suppress warn annot
+use overrid annot
+creat instanc bean
+listen bean properti chang event
+sort string use collat
+convert resourcebundl resourc bundl properti
+convert resourcebundl resourc bundl map
+decompress object
+read zip file checksum valu
+creat checksum zip file
+decompress zip file use zipfil zip file
+decompress zip file use zipinputstream zip input stream
+check string valid date
+get directori
+get usernam oper system activ user
+copi file
+clear system properti
+get file separ symbol
+chang date format symbol
+bitwis exclus oper
+bitwis oper
+bitwis oper
+convert linkedlist link list array
+convert xml persist bean
+get max concurr connect databas
+get databas maximum tabl name length
+know databas support batch updat
+creat type specif collect
+get avail timezon
+get data type support databas
+know databas support transact
+get databas product
+get jdbc driver
+get currenc symbol
+creat mous event use robot
+get colour screen pixel
+creat screen captur use robot
+convert biginteg big integ radix number
+math oper bigdecim big decim
+math oper biginteg big integ
+get name
+know object interfac
+get interfac implement
+get packag name
+get super object
+get list store procedur name
+execut store procedur
+sort item set
+creat string search replac use regex
+sort item arraylist array list
+sort array valu case insensit order
+sort array valu descend order
+store properti xml file
+convert string inputstream input stream
+read system properti integ
+decod string integ
+get mac address host
+convert millisecond valu date
+split string use scanner
+read file use scanner
+get stack trace messag
+read write data window registri
+use consol read user input
+read user input consol use scanner
+use resourcebundl resourc bundl i18n 18n
+use datainputstream data input stream dataoutputstream output
+use randomaccessfil random access file
+compar string regardless case
+insert string stringbuild string builder
+remov substr stringbuild string builder
+convert time timezon
+set default local
+get respons header http request
+creat url object
+read download webpag content
+display messag browser status
+remov duplic element array
+convert array set
+use hashmap hash map
+generat random array number
+revers string word
+convert vararg array
+creat queue use linkedlist link list
+handl window close event
+use stack
+chang applet background color
+replac charact string
+copi char array string
+remov lead trail white space string
+format number lead zero
+add lead zero number
+creat batch updat jdbc
+read applet paramet
+convert string date valu
+use databasemetadata databas meta data get tabl column name
+get column precis scale valu
+know design column tabl name
+know tabl column valu auto increment
+get column name tabl use resultsetmetadata result set meta data
+creat connect ms access databas
+calcul process elaps time
+creat hello world applet
+get avail font famili name
+get avail font name
+pars number local
+format number local
+iter subset string
+revers string use characteriter charact iter
+iter charact string
+disabl auto commit mode jdbc
+creat schedul task use timer
+format date time valu
+format date dd mm yyyi
+get last day month
+get last date month
+convert day year date
+get current work directori
+shuffl element array
+creat encrypt string password
+use
+convert string integ number
+creat zip file
+get tabl name databas
+drop tabl databas
+creat tabl databas
+know number row affect updat data databas tabl
+retriev valu resultset result set
+know minimum maximum number array
+chang file attribut writabl
+chang file attribut read
+know memori size virtual machin
+ping host
+append data text file
+revers string
+convert string char array
+format number
+convert string time object
+use linenumberread line number reader read file
+get user directori name
+get oper system name version
+add delay program
+get part substr string
+get command line argument pass program
+get oper system temporari directori folder
+convert day year month
+check year leap
+calcul differ day date
+convert date string
+get day week
+get number day month
+creat random number
+queri record tabl
+get screen size
+determin pathnam directori
+get total space free disk
+renam file directori
+check file hidden
+get content directori
+creat directori
+get absolut path file
+convert decim octal
+convert decim binari
+get file size
+get file last modif date
+convert decim hexadecim
+read imag file
+get localhost hostnam
+get list weekday name
+get list month name
+convert primit boolean type boolean object
+creat boolean variabl string
+delet file
+get ip address localhost
+creat empti collect object
+read entri zip compress file
+autobox
+use nio copi file
+split string
+execut applic
+get path classpath separ
+get environ variabl
+insert record databas tabl
+creat connect databas
+creat beep sound
+search specif valu array
+sort element array
+check file exist
+get runtim environ jre version
+copi item array
+termin
+creat write data text file
+read text file
+read configur file use util properti
+convert collect object array
+convert array collect object
+add subtract date
+get current month name
+check string valid number
+get date month year valu current
+convert string date object
+compar array equal
+convert primit data type string
+creat repeat sequenc charact
+use stringtoken string token split string
+check string start specif word
+check string end specif word
+know length string
+check string equal
+check string contain specif word
+check charact repres alphabet
+check charact repres number
+know size arraylist array list
+use arraylist array list

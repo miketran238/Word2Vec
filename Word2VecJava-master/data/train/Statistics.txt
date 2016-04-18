@@ -1,0 +1,97 @@
+TopicCBOW
+5/22
+6/22
+8/22
+11/22
+16/22 (5)
+18/22 (10)
+
+rSVM
+7/22
+16/22 (5)
+
+word2Vec
+4/22
+7/22 (2)
+13/22 (5)
+19/22 (10)
+
+
+1. Inheritance
+SQLException:printStackTrace
+=> Throwable::printStackTrace
+
+Receiver: ABC
+Method call: 
+=> Check Thanh's dictionary: exist => has doc return
+no doc => traverse
+
+FileWriter::write
+=> Writer::write
+
+Closable.close
+File.close
+
+
+2. Field Access
+Instant.java => view AST
+
+FieldDeclaration
+VariableFragmentStatement
+InitilizerStatement
+
+report
+
+
+public static final Instant.EPOCH = new Instant(0, 0)
+
+ASTViewer on real code using Instant.EPOCH
+
+QualifiedName node => type,...
+
+System.out.println()
+
+
+
+rVSM
+29% top1
+56% top5
+
+
+Number of pairs: 24966
+Number of API descriptions :24966
+Number of distinct APIs:20081
+Frequency of an API: 2.99631492455555
+Number of API descriptions needded to train: 1062
+
+
+
+Number of unique words in the original dataset: 14012
+Average number of times a word occurs: 29.365329717385098
+
+
+----New JAva--
+Number of pairs: 24515
+Number of API descriptions :24515
+Number of distinct APIs:22058
+Frequency of an API: 3.3183425514552543
+
+--APACHE
+Number of pairs: 19587
+Number of API descriptions :19587
+Number of distinct APIs:36708
+Frequency of an API: 3.1115833060913154
+
+--Java+Apache
+Number of distinct APIs:36923
+Frequency of an API: 3.1942420713376487
+
+The whole dataset
+Number of unique words in the original dataset: 47381
+Average number of times a word occurs: 25.576813490639708
+
+
+
+
+
+

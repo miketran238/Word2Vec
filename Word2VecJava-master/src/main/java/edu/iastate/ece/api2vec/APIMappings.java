@@ -1,6 +1,8 @@
 package edu.iastate.ece.api2vec;
 
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -26,17 +28,20 @@ public class APIMappings {
 		
 		Word2VecModel model = null;
 		try {
-			model = Word2VecModel.fromBinFile(new File("text8_annot.bin"));
+			model = Word2VecModel.fromBinFile(new File("text8.bin"));
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
 		
 		int smplCount = 0;
 		for(String API : APIListWithHighestFreq.keySet()) {
-			if(smplCount ++ < numbSamples) {
+			if(smplCount < numbSamples) {
 				List<Match> matches = Word2VecProcessingJava.getMappedAPIs(API, model);
-				if(matches != null)
+				if(matches != null && matches.get(0).distance() > 0.7) {
 					System.out.println(API + "\n" +Strings.joinObjects("\n", matches));
+					smplCount ++;
+				}
+				System.out.println();
 			}
 		}
 	}
@@ -105,7 +110,9 @@ public class APIMappings {
 	}
 	
 	public LinkedHashMap<String, Integer> getJDKAPIVocabulary() {
-		String [] apiListWithFreq = MatrixUtils.simpleReadLines(new File("JDKAPIs.txt"));
+		Path currentRelativePath = Paths.get("");
+		String s = currentRelativePath.toAbsolutePath().toString();
+		String [] apiListWithFreq = MatrixUtils.simpleReadLines(new File(s + "/data/mappings/JDKAPIs.txt"));
 		
 		LinkedHashMap<String, Integer> APIListWithHighestFreq = new LinkedHashMap<String, Integer>();
 		
@@ -116,7 +123,7 @@ public class APIMappings {
 				String fQualifiedName = fields[1];
 				Integer freq = Integer.parseInt(fields[2]);
 				
-				if(/*type.equals("method") && */!fQualifiedName.contains("new")) {
+				if(type.equals("method") && !fQualifiedName.contains("new")) {
 					String[] names = fQualifiedName.split("\\.");
 					int length = names.length;
 					String fmtAPI = "jdk::" + names[length-2] + "::" + names[length-1];

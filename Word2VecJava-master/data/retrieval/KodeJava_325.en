@@ -1,0 +1,325 @@
+check object refer null
+use format flag format negat number parenthes
+manipul locald object use temporaladjust
+manipul valu locald object
+fill array non default valu
+find differ localdatetim object
+find differ time
+get date first particular day specif date
+add subtract date
+calcul differ date
+use time dayofweek enum
+format date time object
+get length month repres date object
+know given year leap year
+pars text string date time
+use time localdatetim class
+use time localtim class
+use time locald class
+get date time
+compress zip directori recurs
+decompress gzip file
+compress file gzip format
+use iter generic collect
+use prefer store program configur
+creat mysql databas programat
+establish connect databas properti
+get random key valu pair hashtabl
+write file use file newbufferedwrit
+verifi digit signatur sign data
+creat digit signatur sign data
+generat privat key
+revers order array element
+use linkedblockingqueu class
+read file use fileinputstream
+convert string date gmt timezon
+destroy thread group
+check thread group destroy
+automat close resourc jdbc
+use resourc statement
+read line file
+use multi catch statement
+count activ thread thread group
+get number activ thread group
+get thread group thread
+get avail currenc
+get compon type array
+get direct superclass interfac class
+get regard class name
+use join wait thread finish
+check thread aliv
+creat deamon thread
+check thread daemon thread
+use sleep thread class
+count number captur group
+use reluct quantifi regex
+paus current thread
+use quantifi regex
+use captur group regex
+use relat oper
+convert raw ip address string
+use check uncheck
+throw
+use throw keyword declar
+break paragraph sentenc
+break text sentenc word
+sort string data use collationkey class
+sort array string data use rulebasedcol class
+chang date format symbol specifi local
+get format date specif pattern local
+get default date time format defin countri
+chang currenc symbol
+chang number format symbol
+chang decimalformat pattern
+format number percentag string
+format number currenc string
+creat local object use variant
+get avail local languag
+use sortedmap interfac
+convert vector array
+remov element dequ
+add element dequ
+creat hashtabl iter content
+creat dequ use arraydequ class
+read vector object use enumer
+remov first last found element dequ
+creat last first dequ
+retriev avail schema databas
+creat port scanner program
+get maximum number concurr connect
+check driver jdbc compliant
+get jdbc driver properti
+check paramet valu null
+call store procedur return result set
+regist paramet callablestat
+set queri timeout limit
+get system properti
+limit mysql queri result
+append replac content stringbuff
+set fetch size statement
+insert string stringbuff
+remov charact stringbuff
+determin string match pattern exact
+get extens file
+check string start pattern
+trim capac arraylist
+get process
+find replac string
+print file use default regist
+edit file use default regist
+open file use default regist
+launch user default mail client
+launch user default web browser
+set maximum row read queri
+clear buffer use compact
+clear buffer use clear
+get signum function number
+reread content buffer
+use trigonometr calcul
+get minimum maximum valu number
+read data buffer channel
+chang buffer mode write read
+write data buffer use put
+creat nio buffer
+sort string number ascend order
+read file byte array
+sort enumer
+sort linkedlist element
+get first last element linkedlist
+revers order linkedlist element
+remov item linkedlist
+insert item linkedlist
+add item begin end linkedlist
+remov first last item linkedlist
+retriev particular object linkedlist
+retriev linkedlist object use listiter
+retriev linkedlist object use iter
+creat linkedlist
+use switch statement
+use els statement
+count occurr number array
+count number occurr char string
+count occurr day date
+get last item sortedset
+get first item sortedset
+get annot
+obtaion annot runtim use reflect
+get locat mous pointer
+get name current execut
+get number avail screen
+format messag contain number
+format messag contain time
+format messag contain date
+creat roll log file
+limit size log file
+creat custom logger formatt
+prevent logger send log messag parent logger
+set formatt logger handler
+get current level logger
+set logger log level
+set filter logger handler
+use logger memoryhandl class
+use logger consolehandl
+write log file
+condit log
+log
+check messag loggabl
+obtain creat logger
+detect non ascii charact string
+creat temporari file
+add hour minut date
+get modifi class object
+creat object use constructor object
+get constructor class object
+get field class object set get valu
+get field class object
+invok use class
+get class object
+execut extern command obtain result
+search collect element
+know date date
+know date date
+convert properti map
+creat multithread program
+get list file system root
+get cryptograph secur provid
+determin string palindrom
+creat thread implement runnabl interfac
+compar date
+mark deprec
+list properti name bean
+listen bean properti chang event
+sort string use collat class
+convert resourcebundl properti
+convert resourcebundl map
+decompress object
+read zip file checksum valu
+creat checksum zip file
+decompress zip file use zipfil
+decompress zip file use zipinputstream
+copi file
+chang date format symbol
+convert linkedlist array
+get max concurr connect databas
+get databas maximum tabl name length
+know databas support updat result set
+know databas support scrollabl result set
+know databas support batch updat
+creat type specif collect
+get data type support databas
+know databas support transact
+get databas product
+get jdbc driver
+get currenc symbol
+creat mous event use robot class
+creat key press event use robot class
+math oper bigdecim
+math oper biginteg
+get interfac implement class
+get packag name class
+get super class object
+get list store procedur name
+execut store procedur
+sort item set
+creat string search replac use regex
+sort item arraylist
+sort array valu case insensit order
+sort array valu descend order
+store properti xml file
+load properti xml file
+convert inputstream string
+read system properti integ
+decod string integ
+get mac address host
+convert millisecond valu date
+split string use scanner class
+read file use scanner class
+read write data window registri
+make updat updat resultset
+use consol class read user input
+read user input consol use scanner class
+use resourcebundl i18n
+store object file
+use datainputstream dataoutputstream
+use randomaccessfil class
+insert string stringbuild
+remov substr stringbuild
+convert time timezon
+set default local
+get respons header http request
+creat url object
+read download webpag content
+display messag browser status
+remov duplic element array
+convert array set
+use hashmap class
+generat random array number
+revers string word
+creat queue use linkedlist class
+use stack class
+know class object
+creat batch updat jdbc
+convert string date valu
+creat scrollabl result set
+move absolut relat row
+know current posit cursor
+check cursor last row
+check cursor first row
+move cursor last record
+move cursor scrollabl result set
+use databasemetadata get tabl column name
+get column precis scale valu
+know design column tabl name
+know tabl column null valu
+know tabl column valu auto increment
+get column name tabl use resultsetmetadata
+retriev auto generat key
+commit rollback transact jdbc
+creat connect ms access databas
+get avail font name
+pars number local
+format number local
+format date time valu
+format date dd mm yyyi
+get last day month
+get list countri name
+creat encrypt string password
+creat zip file
+get tabl name databas
+drop tabl databas
+creat tabl databas
+know number row affect updat data databas tabl
+retriev valu resultset
+chang file attribut writabl
+know memori size virtual machin
+append data text file
+revers string
+use linenumberread class read file
+convert day year day month
+calcul differ day date
+convert date string
+get day week
+get number day month
+queri record tabl
+get content directori
+get list weekday name
+get list month name
+convert primit boolean type boolean object
+get ip address localhost
+creat empti collect object
+read entri zip compress file
+use nio copi file
+execut applic
+get environ variabl
+insert record databas tabl
+creat connect databas
+creat write data text file
+read text file
+read configur file use util properti
+convert collect object array
+add subtract date
+get current month name
+get date month year valu current date
+use stringtoken split string
+know arraylist contain specifi item
+use arraylist class

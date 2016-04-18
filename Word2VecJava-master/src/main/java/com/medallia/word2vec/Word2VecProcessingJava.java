@@ -19,10 +19,10 @@ import com.medallia.word2vec.util.Format;
 import com.medallia.word2vec.util.ProfilingTimer;
 import com.medallia.word2vec.util.Strings;
 import com.medallia.word2vec.util.ThriftUtils;
+import com.medallia.word2vec.util.FileUtils;
 
 import org.apache.commons.logging.Log;
 import org.apache.thrift.TException;
-import org.apache.commons.io.FileUtils;
 import org.math.plot.FrameView;
 import org.math.plot.Plot2DPanel;
 import org.math.plot.plots.ColoredScatterPlot;
@@ -64,8 +64,8 @@ public class Word2VecProcessingJava {
 
 //				demoWordWithMath();
 //		demoWordDisplay1();
-		demoWordDisplay2();
-//		retrieveAPISequence();
+//		demoWordDisplay2();
+		retrieveAPISequence();
 //		calculateSpearmanRHO();
 
 	}
@@ -191,11 +191,8 @@ public class Word2VecProcessingJava {
 	
 	public static List<Match> getMappedAPIs(String API, Word2VecModel model) {
 		try {
-//			Word2VecModel model = Word2VecModel.fromBinFile(new File("text8.bin"));
 			Searcher searcher = model.forSearch();
-			
 			List<Match> matches = searcher.getMatches(API, 100);
-			
 			List<Match> apcMatches = new ArrayList<Searcher.Match>();
 			
 			int count = 0;
@@ -207,7 +204,7 @@ public class Word2VecProcessingJava {
 			}
 			return apcMatches;
 		} catch(Exception e){
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 		
 		return null;
@@ -540,16 +537,30 @@ public class Word2VecProcessingJava {
 	public static void retrieveAPISequence() {
 		/* Read database of corresponding text and code sequences and store a mapping data (String, String) */
 		LinkedHashMap<String, String> oracleData = new LinkedHashMap<>();
+
+		Path currentRelativePath = Paths.get("");
+		String s = currentRelativePath.toAbsolutePath().toString();
+		@SuppressWarnings("unchecked")
+		HashSet<Integer> skipLines = (HashSet<Integer>) FileUtils.readObjectFile(s + "/data/retrieval/KJ_API2VECTop5.dat");
+		
 		try {
-			Path currentRelativePath = Paths.get("");
-			String s = currentRelativePath.toAbsolutePath().toString();
-			System.out.println("Current relative path is: " + s);
-			Scanner textFR = new Scanner(new File(s+ "/data/survey/52_En.txt"));
-			Scanner apiFR = new Scanner(new File(s+ "/data/survey/52_Jv.txt"));
+//			Scanner textFR = new Scanner(new File(s+ "/data/survey/52_En.txt"));
+//			Scanner apiFR = new Scanner(new File(s+ "/data/survey/52_Jv.txt"));
+			
+			Scanner textFR = new Scanner(new File(s+ "/data/retrieval/KodeJava_437.en"));
+			Scanner apiFR = new Scanner(new File(s+ "/data/retrieval/KodeJava_437.cod"));
+			
+			int lineCount = 0, limit = 500;
 			
 			while(textFR.hasNextLine() && apiFR.hasNextLine()) {
+				lineCount ++;
 				String text = textFR.nextLine();
 				String api = apiFR.nextLine();
+
+				if(!skipLines.contains(lineCount))
+					continue;
+				if(lineCount > limit)
+					continue;
 				oracleData.put(text, api);
 			}
 			
@@ -585,6 +596,9 @@ public class Word2VecProcessingJava {
 			double[] wordVec = searchImpl.getAverageVector(textTokens);
 			double[] cltVec = searchImpl.getAverageVector(CLTs);
 			
+			if(wordVec == null || cltVec == null)
+				continue;
+			
 			wordVectors.put(text, wordVec);
 			cltVectors.put(apiSeq, cltVec);
 		}
@@ -605,7 +619,7 @@ public class Word2VecProcessingJava {
 		}
 		
 		// Check whether for each English text its expected code sequence belongs to its top list
-		int K = 5;
+		int K = 1;
 		
 		int count = 0;
 		for(String text : wordVectors.keySet()) {
@@ -613,12 +627,12 @@ public class Word2VecProcessingJava {
 			int k = 0;
 			for(String apiSeq : rankedAPISeqList.keySet()) {
 				if(++k <= K && oracleData.get(text).equals(apiSeq)) {
-					System.out.println(text + "\t" + apiSeq + "\t" + k);
+//					System.out.println(text + "\t" + apiSeq + "\t" + k);
 					++ count;
 					break;
 				}
 				else if (oracleData.get(text).equals(apiSeq)) {
-					System.out.println(text + "\t" + apiSeq + "\t" + k);
+//					System.out.println(text + "\t" + apiSeq + "\t" + k);
 					break;
 				}
 			}
@@ -639,6 +653,23 @@ public class Word2VecProcessingJava {
 		
 		LinkedHashMap<String, Double> sortedMap = new LinkedHashMap<>();
 		for(Entry<String, Double> entry : list) {
+			sortedMap.put(entry.getKey(), entry.getValue());
+		}
+		
+		return sortedMap;
+	}
+	
+	public static LinkedHashMap<Object, Double> sortObjMap(LinkedHashMap<Object, Double> unsortedMap) {
+		List<Entry<Object, Double>> list = new LinkedList<>(unsortedMap.entrySet());
+		
+		Collections.sort(list, new Comparator<Entry<Object, Double>>() {
+			public int compare(Entry<Object, Double> o1, Entry<Object, Double> o2) {
+				return o2.getValue().compareTo(o1.getValue()); // descending order
+			}
+		});
+		
+		LinkedHashMap<Object, Double> sortedMap = new LinkedHashMap<>();
+		for(Entry<Object, Double> entry : list) {
 			sortedMap.put(entry.getKey(), entry.getValue());
 		}
 		

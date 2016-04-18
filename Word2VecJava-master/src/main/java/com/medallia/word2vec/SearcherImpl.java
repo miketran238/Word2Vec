@@ -8,11 +8,10 @@ import com.google.common.primitives.Doubles;
 import com.medallia.word2vec.util.Pair;
 
 import java.nio.DoubleBuffer;
-import java.util.Arrays;
 import java.util.List;
 
 /** Implementation of {@link Searcher} */
-class SearcherImpl implements Searcher {
+public class SearcherImpl implements Searcher {
   private final NormalizedWord2VecModel model;
   private final ImmutableMap<String, Integer> word2vectorOffset;
 
@@ -27,7 +26,7 @@ class SearcherImpl implements Searcher {
 	word2vectorOffset = result.build();
   }
 
-  SearcherImpl(final Word2VecModel model) {
+  public SearcherImpl(final Word2VecModel model) {
 	this(NormalizedWord2VecModel.fromWord2VecModel(model));
   }
 
@@ -84,15 +83,15 @@ class SearcherImpl implements Searcher {
    * @return Vector for the given word
    * @throws UnknownWordException If word is not in the model's vocabulary
    */
-  private double[] getVector(String word) throws UnknownWordException {
+  public double[] getVector(String word) throws UnknownWordException {
 	final double[] result = getVectorOrNull(word);
 	if(result == null)
 	  throw new UnknownWordException(word);
-
 	return result;
+
   }
 
-  private double[] getVectorOrNull(final String word) {
+  public double[] getVectorOrNull(final String word) {
 	final Integer index = word2vectorOffset.get(word);
 	  if(index == null)
 		return null;
@@ -146,18 +145,18 @@ class SearcherImpl implements Searcher {
   	  average[i] = 0;
   	
   	int seqLength = 0;
-  	try {
-  		for(String word : words) {
-//  			if(model.forSearch().contains(word)) {
-  				double[] v = getVector(word);
-  				average = getSum(v, average);
-  				++ seqLength;
-//  			}
-  		}
-  	} catch(UnknownWordException ex) {
-  		ex.printStackTrace();
-  	}
-  	return getScaledVector(average, 1.0/(double)words.length);
+  	for(String word : words) {
+				double[] v = getVectorOrNull(word);
+				if( v == null) {
+//					System.out.println(word);
+					continue;
+				}
+				average = getSum(v, average);
+				++ seqLength;
+		}
+  	if(seqLength == 0)
+  		return null;
+  	return getScaledVector(average, 1.0 / (double) seqLength);
   }
 
   @Override public SemanticDifference similarity(String s1, String s2) throws UnknownWordException {
