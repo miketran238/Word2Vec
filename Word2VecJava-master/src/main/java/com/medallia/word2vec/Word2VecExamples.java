@@ -35,8 +35,8 @@ public class Word2VecExamples {
 	
 	/** Runs the example */
 	public static void main(String[] args) throws IOException, TException, UnknownWordException, InterruptedException {
-//		demoWord();
-		loadModel();
+		demoWord();
+//		loadModel();
 	}
 	
 	/** 
@@ -46,7 +46,7 @@ public class Word2VecExamples {
 	public static void demoWord() throws IOException, TException, InterruptedException, UnknownWordException {
 		Path currentRelativePath = Paths.get("");
 		String s = currentRelativePath.toAbsolutePath().toString();
-		File f = new File(s + "/data/train/java-apache.l");
+		File f = new File(s + "/data/train/KodeJavaTrunc_WithCodeAsText.l"); // KodeJavaTrunc_JDKDocs.txt java-apache-2.l
 		if (!f.exists())
 	       	       throw new IllegalStateException("Please download and unzip the text8 example from http://mattmahoney.net/dc/text8.zip");
 		List<String> read = Common.readToList(f);
@@ -165,12 +165,12 @@ public class Word2VecExamples {
 					double[] average = searchImpl.getAverageVector(numbInputs);
 					List<Match> matches = searcher.getMatches(average, 100);
 					for (Match match : matches) {
-						if(word.contains("apache::")) { // Apache
-							if(match.match().contains("jdk::"))
+						if(word.contains("::")) { // Apache
+							if(match.match().contains("::"))
 								System.out.println(match);
 						}
-						if(word.contains("jdk::")) { // Java 
-							if(match.match().contains("apache::"))
+						if(word.contains("::")) { // Java 
+							if(match.match().contains("::"))
 								System.out.println(match);
 						}
 						else { //word

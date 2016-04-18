@@ -1,11 +1,14 @@
 package com.medallia.word2vec.util;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
@@ -120,6 +123,23 @@ public final class FileUtils {
 		} catch(Exception ex) {
 			ex.printStackTrace();
 			return null;
+		}
+	}
+	
+	public static void writeObjectFile(Object object, String filePath){
+		try{
+
+			FileOutputStream fout = new FileOutputStream(filePath);
+			BufferedOutputStream bout = new BufferedOutputStream(fout, 1048576);
+			ObjectOutputStream oos = new ObjectOutputStream(bout);   
+			oos.writeObject(object);
+			oos.close();
+			bout.close();
+			fout.close();
+			//			Logger.log("Write Object Done");
+
+		}catch(Exception ex){
+			ex.printStackTrace();
 		}
 	}
 }
