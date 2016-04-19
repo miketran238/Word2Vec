@@ -18,6 +18,8 @@ import org.apache.commons.logging.Log;
 import org.apache.thrift.TException;
 import org.apache.commons.io.FileUtils;
 
+import retrieval.RConfig;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -28,6 +30,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
+
+import javax.security.auth.login.Configuration;
 
 /** Example usages of {@link Word2VecModel} */
 public class Word2VecExamples {
@@ -60,11 +64,11 @@ public class Word2VecExamples {
 		Word2VecModel model = Word2VecModel.trainer()
 				.setMinVocabFrequency(1)
 				.useNumThreads(20)
-				.setWindowSize(7)
-				.type(NeuralNetworkType.TopicCBOW)
-				.setLayerSize(200)
+				.setWindowSize(RConfig.window)
+				.type(NeuralNetworkType.CBOW)
+				.setLayerSize(RConfig.dimension)
 				.useNegativeSamples(25)
-				.setDownSamplingRate(1e-4)
+				.setDownSamplingRate(RConfig.sampleRate)
 				.setNumIterations(5)
 				.setListener(new TrainingProgressListener() {
 					@Override public void update(Stage stage, double progress) {
@@ -75,12 +79,12 @@ public class Word2VecExamples {
 
 		// Writes model to a thrift file
 		try (ProfilingTimer timer = ProfilingTimer.create(LOG, "Writing output to file")) {
-			FileUtils.writeStringToFile(new File("text8.model"), ThriftUtils.serializeJson(model.toThrift()));
+			FileUtils.writeStringToFile(new File("text_" + RConfig.outputExtension + ".model"), ThriftUtils.serializeJson(model.toThrift()));
 		}
 
 		// Alternatively, you can write the model to a bin file that's compatible with the C
 		// implementation.
-		try(final OutputStream os = Files.newOutputStream(Paths.get("text8.bin"))) {
+		try(final OutputStream os = Files.newOutputStream(Paths.get("text_" + RConfig.outputExtension + ".bin"))) {
 			model.toBinFile(os);
 		}
 		
@@ -91,7 +95,7 @@ public class Word2VecExamples {
 	public static void loadModel() throws IOException, TException, UnknownWordException {
 		final Word2VecModel model;
 		try (ProfilingTimer timer = ProfilingTimer.create(LOG, "Loading model")) {
-			String json = Common.readFileToString(new File("text8.model"));
+			String json = Common.readFileToString(new File("text_" + RConfig.outputExtension + ".model")); // text8.model
 			model = Word2VecModel.fromThrift(ThriftUtils.deserializeJson(new Word2VecModelThrift(), json));
 		}
 		interact(model.forSearch(), new SearcherImpl(model));
