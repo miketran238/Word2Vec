@@ -24,7 +24,7 @@ public class BipartiteMatchingRetrieval {
 				Word2VecModel model = null;
 				SearcherImpl searchImpl = null;
 				try {
-					model = Word2VecModel.fromBinFile(new File("text8.bin"));
+					model = Word2VecModel.fromBinFile(new File("text_" + RConfig.outputExtension + ".bin"));
 					searchImpl = new SearcherImpl(model);
 				}
 				catch(Exception e){
@@ -63,8 +63,8 @@ public class BipartiteMatchingRetrieval {
 					String text = textFR.nextLine();
 					String code = apiFR.nextLine();
 					
-					if(!skipLines.contains(lineCount))
-						continue;
+//					if(!skipLines.contains(lineCount))
+//						continue;
 					
 					if(lineCount > limit)
 						continue;
@@ -158,10 +158,13 @@ public class BipartiteMatchingRetrieval {
 					int[] wordAPIMatch = bipartiteMatcher.getMatching();
 					// matching weight of query and code example
 					double matchWeight = 0.0;
+					int numbMatches = 0;
 					for(i = 0; i < wordAPIMatch.length; i ++) {
 						int j = wordAPIMatch[i];
-						if(j != -1)
+						if(j != -1) {
 							matchWeight += fullGraph.get(Pair.create(i, j));
+							numbMatches ++;
+						}
 					}
 					retMeasureWrtQuery.put(codeExample, matchWeight);
 				}

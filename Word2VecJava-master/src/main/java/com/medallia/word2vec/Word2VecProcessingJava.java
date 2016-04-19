@@ -27,6 +27,8 @@ import org.math.plot.FrameView;
 import org.math.plot.Plot2DPanel;
 import org.math.plot.plots.ColoredScatterPlot;
 
+import retrieval.RConfig;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -559,8 +561,7 @@ public class Word2VecProcessingJava {
 
 				if(!skipLines.contains(lineCount))
 					continue;
-				if(lineCount > limit)
-					continue;
+
 				oracleData.put(text, api);
 			}
 			
@@ -575,7 +576,7 @@ public class Word2VecProcessingJava {
 		Word2VecModel model = null;
 		SearcherImpl searchImpl = null;
 		try {
-			model = Word2VecModel.fromBinFile(new File("text8.bin"));
+			model = Word2VecModel.fromBinFile(new File("text_" + RConfig.outputExtension + ".bin"));
 			searchImpl = new SearcherImpl(model);
 		}
 		catch(Exception e){
@@ -637,7 +638,7 @@ public class Word2VecProcessingJava {
 				}
 			}
 		}
-		System.out.println(count);
+		System.out.printf("Retrieval top-%d accuracy: %f", K, count/(double) oracleData.size());
 		
 		// Calculate MRR and thing like that
 	}

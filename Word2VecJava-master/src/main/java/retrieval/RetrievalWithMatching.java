@@ -20,7 +20,6 @@ import com.medallia.word2vec.Word2VecProcessingJava;
 import com.medallia.word2vec.util.FileUtils;
 
 public class RetrievalWithMatching {
-	
 	public static void main(String[] args) {
 		RetrievalWithMatching retrieval = new RetrievalWithMatching();
 		retrieval.buildGroundTruth();
@@ -34,7 +33,7 @@ public class RetrievalWithMatching {
 			Word2VecModel model = null;
 			SearcherImpl searchImpl = null;
 			try {
-				model = Word2VecModel.fromBinFile(new File("text8.bin"));
+				model = Word2VecModel.fromBinFile(new File("text_" + RConfig.outputExtension + ".bin"));
 				searchImpl = new SearcherImpl(model);
 			}
 			catch(Exception e){
@@ -61,11 +60,11 @@ public class RetrievalWithMatching {
 		String s = currentRelativePath.toAbsolutePath().toString();
 		
 		@SuppressWarnings("unchecked")
-		HashSet<Integer> skipLines = (HashSet<Integer>) FileUtils.readObjectFile(s + "/data/retrieval/KJ_API2VECTop5.dat"); //KodeJava_topKOver5
+		HashSet<Integer> skipLines = (HashSet<Integer>) FileUtils.readObjectFile(s + "/data/retrieval/rVSM_260.dat"); //KodeJava_topKOver5
 		
 		try {
-			Scanner textFR = new Scanner(new File(s+ "/data/retrieval/KodeJava_439.en"));
-			Scanner apiFR = new Scanner(new File(s+ "/data/retrieval/KodeJava_439.cod"));
+			Scanner textFR = new Scanner(new File(s+ "/data/retrieval/KodeJava_22.en.txt"));
+			Scanner apiFR = new Scanner(new File(s+ "/data/retrieval/KodeJava_22.cod.txt"));
 			
 			
 			int lineCount = 0, limit = 50;
@@ -74,8 +73,8 @@ public class RetrievalWithMatching {
 				String text = textFR.nextLine();
 				String code = apiFR.nextLine();
 				
-				if(!skipLines.contains(lineCount))
-					continue;
+//				if(!skipLines.contains(lineCount))
+//					continue;
 //				if(lineCount > limit)
 //					continue;
 				
@@ -96,8 +95,6 @@ public class RetrievalWithMatching {
 				
 				String[] APIs = code.split("\\s");
 				for(String API : APIs) {
-//					if(API.contains("PrintStream::") || API.contains("String::"))
-//						continue;
 					double[] apiVec;
 					if(retAPIList.containsKey(API))
 						apiVec = retAPIList.get(API);
@@ -134,72 +131,79 @@ public class RetrievalWithMatching {
 
 		
 		// Retrieval part, setup top K
-		int K = 1;
-		// count number of example get accurate in top K
-		int countAccurate = 0;
-		HashSet<Integer> filteredExamples = new HashSet<>();
+		int KThreshold = 5, K = 0; // counter K
+		System.out.println("Retrieval top-K accuracy:");
 		
-		
-		for(Query query : oracleQueryCodeEx.keySet()) {
-			double[] avgQueryVec = query.avgVector;
-			// calculate cosine distance between this query average vector and every API and store results in Map
-			LinkedHashMap<String, Double> cosineScoreToSingleAPI = new LinkedHashMap<>();
-			for(String API : retAPIList.keySet()) {
-				double[] apiVec = retAPIList.get(API);
-				double score = searchImpl.calculateDistance(avgQueryVec, apiVec);
-				cosineScoreToSingleAPI.put(API, score);
-			}
+		while (K++ < KThreshold) { // start from top 1 to 5
+			// count number of example get accurate in top K
+			int countAccurate = 0;
+			HashSet<Integer> filteredExamples = new HashSet<>();
 			
-			LinkedHashMap<String, Double> sortedCosineMeasure = Word2VecProcessingJava.sortMap(cosineScoreToSingleAPI);
-			// J is the maximum index (ordered) of APIs that more than 1 examples share common API 
-			int J = 0;
-			for(String closestAPIsToQuery : sortedCosineMeasure.keySet()) {
-				HashSet<RetrievedCodeExample> candCodeExams = codeExContainsGivenAPI.get(closestAPIsToQuery);
-				J ++;
-				if(candCodeExams.size() == 1)
-						break;
-			}
 			
-			// reset counter and score to 0 for all examples from the last query to process the current one
-			for(RetrievedCodeExample candCodeExp : oracleQueryCodeEx.values()) {
-				candCodeExp.count = 0;
-				candCodeExp.score = 0.0;
-			}
-			
-			// score examples with regard to query and rank
-			LinkedHashMap<RetrievedCodeExample, Double> retMeasureWrtQuery = new LinkedHashMap<>();
-			
-			for(String closestAPIsToQuery : sortedCosineMeasure.keySet()) {
-				for(RetrievedCodeExample candCodeExp : oracleQueryCodeEx.values()) {
-					if(candCodeExp.count < J && candCodeExp.codeElements.containsKey(closestAPIsToQuery)) {
-						candCodeExp.count ++;
-						candCodeExp.score += sortedCosineMeasure.get(closestAPIsToQuery);
-					}
-					if (candCodeExp.count == J)
-						retMeasureWrtQuery.put(candCodeExp, candCodeExp.score / (double) J);
+			for(Query query : oracleQueryCodeEx.keySet()) {
+				double[] avgQueryVec = query.avgVector;
+				// calculate cosine distance between this query average vector and every API and store results in Map
+				LinkedHashMap<String, Double> cosineScoreToSingleAPI = new LinkedHashMap<>();
+				for(String API : retAPIList.keySet()) {
+					double[] apiVec = retAPIList.get(API);
+					double score = searchImpl.calculateDistance(avgQueryVec, apiVec);
+					cosineScoreToSingleAPI.put(API, score);
 				}
-			}
-			
-			if(query.queryId < 50)
-				filteredExamples.add(query.queryId);
-				// Order by new retrieval score and get top K
-				int k = 0;
 				
-				LinkedHashMap<RetrievedCodeExample, Double> sortedRetMeasureWrtQuery = sortObjMap(retMeasureWrtQuery);
-				for(RetrievedCodeExample sortedEx : sortedRetMeasureWrtQuery.keySet()) {
-					if(k++ < K && sortedEx == oracleQueryCodeEx.get(query)) {
-						countAccurate ++;
-						filteredExamples.add(query.queryId);
-						break;
-					}
-					if(sortedEx == oracleQueryCodeEx.get(query)) {
-//						System.out.println(query.text + "\t" + sortedEx.example + "\t" + k);
-						break;
+				LinkedHashMap<String, Double> sortedCosineMeasure = Word2VecProcessingJava.sortMap(cosineScoreToSingleAPI);
+				// J is the maximum index (ordered) of APIs that more than 1 examples share common API 
+				int J = 0;
+				for(String closestAPIsToQuery : sortedCosineMeasure.keySet()) {
+					HashSet<RetrievedCodeExample> candCodeExams = codeExContainsGivenAPI.get(closestAPIsToQuery);
+					J ++;
+					if(candCodeExams.size() == 1)
+							break;
+				}
+				
+				// reset counter and score to 0 for all examples from the last query to process the current one
+				for(RetrievedCodeExample candCodeExp : oracleQueryCodeEx.values()) {
+					candCodeExp.count = 0;
+					candCodeExp.score = 0.0;
+				}
+				
+				// score examples with regard to query and rank
+				LinkedHashMap<RetrievedCodeExample, Double> retMeasureWrtQuery = new LinkedHashMap<>();
+				
+				for(String closestAPIsToQuery : sortedCosineMeasure.keySet()) {
+					for(RetrievedCodeExample candCodeExp : oracleQueryCodeEx.values()) {
+						if(candCodeExp.count < J && candCodeExp.codeElements.containsKey(closestAPIsToQuery)) {
+							candCodeExp.count ++;
+							candCodeExp.score += sortedCosineMeasure.get(closestAPIsToQuery);
+						}
+						if (candCodeExp.count == J)
+							retMeasureWrtQuery.put(candCodeExp, candCodeExp.score / (double) J);
 					}
 				}
-		}
-//		FileUtils.writeObjectFile(filteredExamples, s + "/data/retrieval/KJ_API2VECTop5.dat");
-		System.out.printf("Retrieval top-%d accuracy: %f", K, countAccurate/(double) oracleQueryCodeEx.size());
+				
+				if(query.queryId < 30)
+					filteredExamples.add(query.queryId);
+					// Order by new retrieval score and get top K
+					int k = 0;
+					
+					LinkedHashMap<RetrievedCodeExample, Double> sortedRetMeasureWrtQuery = sortObjMap(retMeasureWrtQuery);
+					for(RetrievedCodeExample sortedEx : sortedRetMeasureWrtQuery.keySet()) {
+						if(k++ < K && sortedEx == oracleQueryCodeEx.get(query)) {
+							countAccurate ++;
+							filteredExamples.add(query.queryId);
+							if(K == 1)
+								System.out.println(query.text + "\t" + sortedEx.example + "\t" + k);
+							break;
+						}
+						if(sortedEx == oracleQueryCodeEx.get(query)) {
+//							System.out.println(query.text + "\t" + sortedEx.example + "\t" + k);
+							break;
+						}
+					}
+			}
+//			FileUtils.writeObjectFile(filteredExamples, s + "/data/retrieval/KJ_API2VECTop5.dat");
+			System.out.printf("%f", countAccurate/(double) oracleQueryCodeEx.size());
+			System.out.println();
+		}	
 	}
 	
 	public static LinkedHashMap<RetrievedCodeExample, Double> sortObjMap(LinkedHashMap<RetrievedCodeExample, Double> unsortedMap) {
