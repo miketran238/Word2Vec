@@ -146,13 +146,13 @@ public class SearcherImpl implements Searcher {
   	
   	int seqLength = 0;
   	for(String word : words) {
-				double[] v = getVectorOrNull(word);
-				if( v == null) {
-//					System.out.println(word);
-					continue;
-				}
-				average = getSum(v, average);
-				++ seqLength;
+		double[] v = getVectorOrNull(word);
+		if( v == null) {
+			System.out.println(word);
+			continue;
+		}
+		average = getSum(v, average);
+		++ seqLength;
 		}
   	if(seqLength == 0)
   		return null;
