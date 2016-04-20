@@ -36,7 +36,6 @@ public class BipartiteMatchingRetrieval {
 			HashMap<Query, RetrievedCodeExample> oracleQueryCodeEx = new HashMap<>();
 			HashMap<String, double[]> retAPIList = new HashMap<>();
 			
-			
 			// For each query, calculate cosine distance to ever code element, sort by descending order
 			// get first element. Retrieve examples including this first element
 			// store accumulate cosine. If there are > 1 examples, start with the second best

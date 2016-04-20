@@ -1,7 +1,6 @@
 package retrieval;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collections;
@@ -60,11 +59,11 @@ public class RetrievalWithMatching {
 		String s = currentRelativePath.toAbsolutePath().toString();
 		
 		@SuppressWarnings("unchecked")
-		HashSet<Integer> skipLines = (HashSet<Integer>) FileUtils.readObjectFile(s + "/data/retrieval/rVSM_260.dat"); //KodeJava_topKOver5
+		HashSet<Integer> skipLines = (HashSet<Integer>) FileUtils.readObjectFile(s + "/data/retrieval/KodeJava_topKOver5.dat"); //KodeJava_topKOver5, rVSM_260
 		
 		try {
-			Scanner textFR = new Scanner(new File(s+ "/data/retrieval/KodeJava_22.en.txt"));
-			Scanner apiFR = new Scanner(new File(s+ "/data/retrieval/KodeJava_22.cod.txt"));
+			Scanner textFR = new Scanner(new File(s+ "/data/retrieval/KodeJava_439.en"));
+			Scanner apiFR = new Scanner(new File(s+ "/data/retrieval/KodeJava_439.cod"));
 			
 			
 			int lineCount = 0, limit = 50;
@@ -124,21 +123,15 @@ public class RetrievalWithMatching {
 		catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		
-		/** There are several support method
-		 * 1. Given a vector and a list of candidate query, find the best and also its score
-		 *  */
 
-		
 		// Retrieval part, setup top K
 		int KThreshold = 5, K = 0; // counter K
+		HashSet<Integer> filteredExamples = new HashSet<>();
 		System.out.println("Retrieval top-K accuracy:");
 		
 		while (K++ < KThreshold) { // start from top 1 to 5
 			// count number of example get accurate in top K
 			int countAccurate = 0;
-			HashSet<Integer> filteredExamples = new HashSet<>();
-			
 			
 			for(Query query : oracleQueryCodeEx.keySet()) {
 				double[] avgQueryVec = query.avgVector;
@@ -180,30 +173,31 @@ public class RetrievalWithMatching {
 					}
 				}
 				
-				if(query.queryId < 30)
-					filteredExamples.add(query.queryId);
 					// Order by new retrieval score and get top K
-					int k = 0;
-					
-					LinkedHashMap<RetrievedCodeExample, Double> sortedRetMeasureWrtQuery = sortObjMap(retMeasureWrtQuery);
-					for(RetrievedCodeExample sortedEx : sortedRetMeasureWrtQuery.keySet()) {
-						if(k++ < K && sortedEx == oracleQueryCodeEx.get(query)) {
-							countAccurate ++;
-							filteredExamples.add(query.queryId);
-							if(K == 1)
-								System.out.println(query.text + "\t" + sortedEx.example + "\t" + k);
-							break;
-						}
-						if(sortedEx == oracleQueryCodeEx.get(query)) {
-//							System.out.println(query.text + "\t" + sortedEx.example + "\t" + k);
-							break;
-						}
+				int k = 0;
+				
+				LinkedHashMap<RetrievedCodeExample, Double> sortedRetMeasureWrtQuery = sortObjMap(retMeasureWrtQuery);
+				
+				
+				for(RetrievedCodeExample sortedEx : sortedRetMeasureWrtQuery.keySet()) {
+					if(k++ < K && sortedEx == oracleQueryCodeEx.get(query)) {
+						countAccurate ++;
+						filteredExamples.add(query.queryId);
+						if(K == 1)
+							System.out.println(query.text + "\t" + sortedEx.example + "\t" + k);
+						break;
 					}
+					if(sortedEx == oracleQueryCodeEx.get(query)) {
+//							System.out.println(query.text + "\t" + sortedEx.example + "\t" + k);
+						break;
+					}
+				}
 			}
-//			FileUtils.writeObjectFile(filteredExamples, s + "/data/retrieval/KJ_API2VECTop5.dat");
+			
 			System.out.printf("%f", countAccurate/(double) oracleQueryCodeEx.size());
 			System.out.println();
-		}	
+		}
+//		FileUtils.writeObjectFile(filteredExamples, s + "/data/retrieval/KJ_API2VECTop1.dat");
 	}
 	
 	public static LinkedHashMap<RetrievedCodeExample, Double> sortObjMap(LinkedHashMap<RetrievedCodeExample, Double> unsortedMap) {
