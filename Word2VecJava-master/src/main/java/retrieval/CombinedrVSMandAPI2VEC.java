@@ -126,7 +126,7 @@ public class CombinedrVSMandAPI2VEC {
 		}
 		
 		// Retrieval part, setup top K
-		int KThreshold = 5, K = 0; // counter K
+		int KThreshold = 10, K = 0; // counter K
 		HashSet<Integer> filteredExamples = new HashSet<>();
 		System.out.printf("Retrieval top-K accuracy for %d examples:\n", oracleQueryCodeEx.size());
 		
@@ -200,8 +200,9 @@ public class CombinedrVSMandAPI2VEC {
 				while(rVSMSentries.hasNext()) {
 					Map.Entry<Integer, Double> entry = rVSMSentries.next();
 					double rVSMScore = Math.exp(entry.getValue());
-					entry.setValue(rVSMScore);
-					rVSMNormalProb +=rVSMScore; 
+//					entry.setValue(rVSMScore);
+					if(rVSMNormalProb < rVSMScore)
+					rVSMNormalProb =rVSMScore; 
 				}
 				
 				rVSMSentries = rVSMScoredExms.entrySet().iterator();
@@ -218,8 +219,9 @@ public class CombinedrVSMandAPI2VEC {
 				while(cosSEntries.hasNext()) {
 					Map.Entry<RetrievedCodeExample, Double> entry = cosSEntries.next();
 					double cosScore = Math.exp(entry.getValue());
-					entry.setValue(cosScore);
-					cosNormalProb +=cosScore; 
+//					entry.setValue(cosScore);
+					if(cosNormalProb < cosScore)
+						cosNormalProb =cosScore; 
 				}
 				
 				cosSEntries = retMeasureWrtQuery.entrySet().iterator();
@@ -237,10 +239,10 @@ public class CombinedrVSMandAPI2VEC {
 					RetrievedCodeExample candCodeEx = entry.getKey();
 					if(rVSMScoredExms.containsKey(candCodeEx.exId)) {
 						double jaccard = jaccardDistanceWrtQuery.get(queryLineIdx);
-						if(jaccard < 0.65)
+						if(jaccard < 0.63)
 							RConfig.alpha = 0.5;
 						else
-							RConfig.alpha = 1;
+							RConfig.alpha = 1.0;
 						double combinedScore = RConfig.alpha * rVSMScoredExms.get(candCodeEx.exId) + 
 								(1-RConfig.alpha) * candCodeEx.score;
 						candCodeEx.score = combinedScore;

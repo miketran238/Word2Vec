@@ -147,7 +147,7 @@ public class SearcherImpl implements Searcher {
   	int seqLength = 0;
   	for(String word : words) {
 		double[] v = getVectorOrNull(word);
-		if( v == null) {
+		if( v == null || word.equals("use") || word.equals("know")) {
 			System.out.println(word);
 			continue;
 		}

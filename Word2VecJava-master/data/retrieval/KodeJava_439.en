@@ -25,7 +25,7 @@ use iter generic collect
 creat generic collect
 creat mysql sql databas programat
 establish connect databas properti
-get random key valu pair hashtabl
+get random key valu pair hashtabl Hashtable::Hashtable
 write file use file newbufferedwrit buffer writer Files::newBufferedWriter
 recurs list text file directori
 verifi digit signatur sign data
@@ -207,7 +207,7 @@ creat object use constructor
 get constructor object
 get field object set valu
 get field object
-invok use
+invok use Method::Method
 get object
 execut extern command obtain result
 search collect element
@@ -215,7 +215,7 @@ rotat element collect
 display file content hexadecim
 know date
 know date
-convert properti map
+convert properti map Properties::Properties Map::Map
 creat multithread program
 get list file system root
 check directori empti
@@ -227,13 +227,13 @@ use overrid annot
 creat instanc bean
 listen bean properti chang event
 sort string use collat
-convert resourcebundl resourc bundl properti
-convert resourcebundl resourc bundl map
+convert resourcebundl resourc bundl properti ResourceBundle::ResourceBundle
+convert resourcebundl resourc bundl map ResourceBundle::ResourceBundle
 decompress object
 read zip file checksum valu
 creat checksum zip file
-decompress zip file use zipfil zip file
-decompress zip file use zipinputstream zip input stream
+decompress zip file use zipfil zip file ZipFile::ZipFile
+decompress zip file use zipinputstream zip input stream ZipInputStream::ZipInputStream
 check string valid date
 get directori
 get usernam oper system activ user
@@ -244,7 +244,7 @@ chang date format symbol
 bitwis exclus oper
 bitwis oper
 bitwis oper
-convert linkedlist link list array
+convert linkedlist link list array LinkedList::LinkedList
 convert xml persist bean
 get max concurr connect databas
 get databas maximum tabl name length
@@ -259,9 +259,9 @@ get currenc symbol
 creat mous event use robot
 get color screen pixel
 creat screen captur use robot
-convert biginteg big integ radix number
-math oper bigdecim big decim
-math oper biginteg big integ
+convert biginteg big integ radix number BigInteger::BigInteger
+math oper bigdecim big decim BigDecimal::BigDecimal
+math oper biginteg big integ BigInteger::BigInteger
 get name
 know object interfac
 get interfac implement
@@ -271,42 +271,42 @@ get list store procedur name
 execut store procedur
 sort item set
 creat string search replac use regex
-sort item arraylist array list
+sort item arraylist array list ArrayList::ArrayList
 sort array valu case insensit order
 sort array valu descend order
 store properti xml file
-convert string inputstream input stream
+convert string inputstream input stream InputStream::InputStream
 read system properti integ
 decod string integ
 get mac address host
 convert millisecond valu date
-split string use scanner
-read file use scanner
+split string use scanner Scanner::Scanner
+read file use scanner Scanner::Scanner
 get stack trace messag
 read write data window registri
-use consol read user input
+use consol read user input Console::Console
 read user input consol use scanner
-use resourcebundl resourc bundl i18n 18n
-use datainputstream data input stream dataoutputstream output
-use randomaccessfil random access file
+use resourcebundl resourc bundl i18n 18n ResourceBundle::ResourceBundle
+use datainputstream data input stream dataoutputstream output DataOutputStream::DataOutputStream DataInputStream::DataInputStream
+use randomaccessfil random access file RandomAccessFile::RandomAccessFile
 compar string regardless case
-insert string stringbuild string builder
-remov substr stringbuild string builder
+insert string stringbuild string builder StringBuilder::StringBuilder
+remov substr stringbuild string builder StringBuilder::StringBuilder
 convert time timezon
-set default local
+set default local Locale::Locale
 get respons header http request
-creat url object
+creat url object URL::URL
 read download web pag content
 display messag browser status
 remov duplic element array
 convert array set
-use hashmap hash map
+use hashmap hash map HashMap::HashMap
 generat random array number
 revers string word
 convert vararg array
 creat queue use linkedlist link list
 handl window close event
-use stack
+use stack Stack::Stack
 chang applet background color
 replac charact string
 copi char array string
@@ -316,11 +316,11 @@ add lead zero number
 creat batch updat jdbc
 read applet paramet
 convert string date valu
-use databasemetadata databas meta data get tabl column name
+use databasemetadata databas meta data get tabl column name DatabaseMetaData::DatabaseMetaData
 get column precis scale valu
 know design column tabl name
 know tabl column valu auto increment
-get column name tabl use resultsetmetadata result set meta data
+get column name tabl use resultsetmetadata result set meta data ResultSetMetaData::ResultSetMetaData
 creat connect ms access databas
 calcul process elaps time
 creat hello world applet
@@ -329,7 +329,7 @@ get avail font name
 pars number local
 format number local
 iter subset string
-revers string use characteriter charact iter
+revers string use characteriter charact iter CharacterIterator::CharacterIterator
 iter charact string
 disabl auto commit mode jdbc
 creat schedul task use timer
@@ -359,7 +359,7 @@ revers string
 convert string char array
 format number
 convert string time object
-use linenumberread line number reader read file
+use linenumberread line number reader read file LineNumberReader::LineNumberReader
 get user directori name
 get oper system name version
 add delay program
@@ -369,7 +369,7 @@ get oper system temporari directori folder
 convert day year month
 check year leap
 calcul differ day date
-convert date string
+convert date string Date::Date String::String
 get day week
 get number day month
 creat random number
@@ -391,7 +391,7 @@ read imag file
 get localhost hostnam
 get list weekday name
 get list month name
-convert primit boolean type boolean object
+convert primit boolean type boolean object Boolean::Boolean
 creat boolean variabl string
 delet file
 get ip address localhost
@@ -414,18 +414,18 @@ copi item array
 termin
 creat write data text file
 read text file
-read configur file use util properti
+read configur file use properti Properties::Properties
 convert collect object array
 convert array collect object
 add subtract date
 get current month name
 check string valid number
 get date month year valu current
-convert string date object
+convert string date object Date::Date String::String
 compar array equal
 convert primit data type string
 creat repeat sequenc charact
-use stringtoken string token split string
+use stringtoken string token split string StringTokenizer::StringTokenizer
 check string start specif word
 check string end specif word
 know length string
@@ -435,5 +435,5 @@ know charact uppercas
 know charact lowercas
 check charact repres alphabet
 check charact repres number
-know size arraylist array list
-use arraylist array list
+know size arraylist array list List::List
+use arraylist array list List::List
