@@ -17,41 +17,6 @@ word2Vec
 19/22 (10)
 
 
-1. Inheritance
-SQLException:printStackTrace
-=> Throwable::printStackTrace
-
-Receiver: ABC
-Method call: 
-=> Check Thanh's dictionary: exist => has doc return
-no doc => traverse
-
-FileWriter::write
-=> Writer::write
-
-Closable.close
-File.close
-
-
-2. Field Access
-Instant.java => view AST
-
-FieldDeclaration
-VariableFragmentStatement
-InitilizerStatement
-
-report
-
-
-public static final Instant.EPOCH = new Instant(0, 0)
-
-ASTViewer on real code using Instant.EPOCH
-
-QualifiedName node => type,...
-
-System.out.println()
-
-
 
 rVSM
 29% top1
@@ -92,6 +57,38 @@ Average number of times a word occurs: 25.576813490639708
 
 
 
+1. Inheritance
+SQLException:printStackTrace
+=> Throwable::printStackTrace
 
+Receiver: ABC
+Method call: 
+=> Check Thanh's dictionary: exist => has doc return
+no doc => traverse
+
+FileWriter::write
+=> Writer::write
+
+Closable.close
+File.close
+
+
+2. Field Access
+Instant.java => view AST
+
+FieldDeclaration
+VariableFragmentStatement
+InitilizerStatement
+
+report
+
+
+public static final Instant.EPOCH = new Instant(0, 0)
+
+ASTViewer on real code using Instant.EPOCH
+
+QualifiedName node => type,...
+
+System.out.println()
 
 

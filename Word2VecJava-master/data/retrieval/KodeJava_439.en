@@ -1,23 +1,23 @@
 use format flag negat number parenthes
-manipul locald local date object use temporaladjust tempor adjust
-manipul valu locald local date object
+manipul locald local date object use temporaladjust tempor adjust LocalDate::LocalDate TemporalAdjusters::TemporalAdjusters
+manipul valu locald local date object LocalDate::LocalDate
 fill array non default valu
-find differ localdatetim local date time object
+find differ localdatetim local date time object LocalDateTime::LocalDateTime
 find differ time
 pars negat number parenthes
 display negat number parenthes
 get date first particular day specif
 add subtract date
 calcul differ date
-use time dayofweek day week enum
+use time dayofweek day week enum DayOfWeek::DayOfWeek
 format date time object
 insert element array given posit
 get length month repres date object
 know given year leap
 pars text string date time
-use time localdatetim local date time
-use time localtim local time
-use time locald local date
+use time localdatetim local date time LocalDateTime::LocalDateTime
+use time localtim local time LocalTime::LocalTime
+use time locald local date LocalDate::LocalDate
 get date time
 decompress gzip zip file
 compress file gzip zip format
@@ -26,7 +26,7 @@ creat generic collect
 creat mysql sql databas programat
 establish connect databas properti
 get random key valu pair hashtabl
-write file use file newbufferedwrit buffer writer
+write file use file newbufferedwrit buffer writer Files::newBufferedWriter
 recurs list text file directori
 verifi digit signatur sign data
 split string number charact
@@ -37,10 +37,10 @@ pick random valu enum
 clear content array
 set valu file attribut
 revers order array element
-use priorityblockingqueu prioriti block queue
-use linkedblockingqueu link block queue
-read file use fileinputstream file input stream
-convert string date gmt timezon
+use priorityblockingqueu prioriti block queue BlockingQueue::BlockingQueue
+use linkedblockingqueu link block queue BlockingQueue::BlockingQueue
+read file use fileinputstream file input stream FileInputStream::FileInputStream
+convert string date gmt timezon Date::Date
 creat array uniqu valu
 destroy thread group
 check thread group destroy
@@ -50,7 +50,7 @@ get number activ thread group
 get thread group
 get state thread
 get avail currenc
-get pattern string simpledateformat date format
+get pattern string simpledateformat date format SimpleDateFormat::SimpleDateFormat
 get compon type array
 determin object repres array
 get direct superclass interfac
@@ -76,30 +76,30 @@ use throw keyword declar
 handl use catch block
 break paragraph sentenc
 break text sentenc word
-sort string data use collationkey collat key
-sort array string data use rulebasedcol rule base collat
+sort string data use collationkey collat key CollationKey::CollationKey
+sort array string data use rulebasedcol rule base collat RuleBasedCollator::RuleBasedCollator
 chang date format symbol specifi local
 get format date specif pattern local
 get default date time format defin countri
 chang currenc symbol
 chang number format symbol
-chang decimalformat decim format pattern
+chang decimalformat decim format pattern DecimalFormat::DecimalFormat
 format number percentag string
 format number currenc string
-creat local object use variant
-get avail local languag
-use sortedmap sort map interfac
-convert vector array
+creat local object use variant Locale::Locale
+get avail local languag Locale::Locale
+use sortedmap sort map interfac SortedMap::SortedMap
+convert vector array Vector::Vector
 use shift oper
 use shift
 use unari bitwis complement oper
-remov element dequ
-add element dequ
-creat hashtabl iter content
-creat dequ use arraydequ array
-read vector object use enumer
-remov first last found element dequ
-creat last first dequ
+remov element dequ Deque::Deque
+add element dequ Deque::Deque
+creat hashtabl iter content Hashtable::Hashtable
+creat dequ use arraydequ array Deque::Deque ArrayDeque::ArrayDeque
+read vector object use enumer Vector::Vector Enumeration::Enumeration
+remov first last found element dequ Deque::Deque
+creat last first dequ Deque::Deque
 get host default timezon
 get timezon millisecond offset
 retriev avail schema databas
@@ -110,7 +110,7 @@ get jdbc driver properti
 check paramet valu null
 convert doubl valu int
 call store procedur return result set
-regist paramet callablestat callabl statement
+regist paramet callablestat callabl statement CallableStatement::CallableStatement
 set queri timeout limit
 get peak live thread count
 get current number live thread
@@ -119,14 +119,14 @@ get system properti
 get start time jvm
 get time jvm
 limit mysql sql queri result
-append replac content stringbuff string buffer
+append replac content stringbuff string buffer StringBuffer::StringBuffer
 set fetch size statement
-insert string stringbuff string buffer
-remov charact stringbuff string buffer
+insert string stringbuff string buffer StringBuffer::StringBuffer
+remov charact stringbuff string buffer StringBuffer::StringBuffer
 get char valu string specifi posit
 determin string match pattern exact
 check string start pattern
-trim capac arraylist array list
+trim capac arraylist array list ArrayList::ArrayList
 get process
 find replac string
 print file use default regist
@@ -157,18 +157,18 @@ creat nio buffer
 calcul process execut time higher resolut
 sort string number ascend order
 read file byte array
-sort enumer
-sort linkedlist link list element
-get first last element linkedlist link list
-revers order linkedlist link list element
-remov item linkedlist link list
-insert item linkedlist link list
-add item begin end linkedlist link list
-remov first last item linkedlist link list
-retriev particular object linkedlist link list
-retriev linkedlist link list object use listiter iter
-retriev linkedlist link list object use iter
-creat linkedlist link list
+sort enumer Enumeration::Enumeration
+sort linkedlist link list element LinkedList::LinkedList
+get first last element linkedlist link list LinkedList::LinkedList
+revers order linkedlist link list element LinkedList::LinkedList
+remov item linkedlist link list LinkedList::LinkedList
+insert item linkedlist link list LinkedList::LinkedList
+add item begin end linkedlist link list LinkedList::LinkedList
+remov first last item linkedlist link list LinkedList::LinkedList
+retriev particular object linkedlist link list LinkedList::LinkedList
+retriev linkedlist link list object use listiter iter LinkedList::LinkedList ListIterator::ListIterator
+retriev linkedlist link list object use iter LinkedList::LinkedList Iterator::Iterator
+creat linkedlist link list LinkedList::LinkedList
 count occurr number array
 use doubl brace initi
 count occurr day date
@@ -178,7 +178,7 @@ get first item sortedset sort set
 generat uuid guid
 get mous number button
 get locat mous pointer
-convert util date sql
+convert util date sql Date::Date
 get screen display mode
 get number avail screen
 format messag contain number
@@ -189,15 +189,15 @@ limit size log file
 creat custom logger formatt
 prevent logger send log messag parent
 set formatt logger handler
-compar logger level sever
-get current level logger
-set logger log level
+compar logger level sever Logger::Logger
+get current level logger Logger::Logger
+set logger log level Logger::Logger
 set filter logger handler
-use logger consolehandl consol handler
+use logger consolehandl consol handler ConsoleHandler::ConsoleHandler
 write log file
 log
 check messag loggabl
-obtain creat logger
+obtain creat logger ConsoleHandler::ConsoleHandler
 detect non ascii charact string
 creat temporari file
 add hour minut date
@@ -257,7 +257,7 @@ get databas product
 get jdbc driver
 get currenc symbol
 creat mous event use robot
-get colour screen pixel
+get color screen pixel
 creat screen captur use robot
 convert biginteg big integ radix number
 math oper bigdecim big decim
@@ -296,7 +296,7 @@ convert time timezon
 set default local
 get respons header http request
 creat url object
-read download webpag content
+read download web pag content
 display messag browser status
 remov duplic element array
 convert array set
