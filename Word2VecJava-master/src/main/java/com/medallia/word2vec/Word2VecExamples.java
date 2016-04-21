@@ -39,8 +39,8 @@ public class Word2VecExamples {
 	
 	/** Runs the example */
 	public static void main(String[] args) throws IOException, TException, UnknownWordException, InterruptedException {
-//		demoWord();
-		loadModel();
+		demoWord();
+//		loadModel();
 	}
 	
 	/** 
@@ -50,7 +50,7 @@ public class Word2VecExamples {
 	public static void demoWord() throws IOException, TException, InterruptedException, UnknownWordException {
 		Path currentRelativePath = Paths.get("");
 		String s = currentRelativePath.toAbsolutePath().toString();
-		File f = new File(s + "/data/train/KodeJavaTrunc_WithCodeAsText.l"); // KodeJavaTrunc_JDKDocs.txt java-apache-2.l
+		File f = new File(s + "/data/train/KJTrunc_WithCodeAsText_ManFix.l"); // KodeJavaTrunc_JDKDocs.txt java-apache-2.l
 		if (!f.exists())
 	       	       throw new IllegalStateException("Please download and unzip the text8 example from http://mattmahoney.net/dc/text8.zip");
 		List<String> read = Common.readToList(f);

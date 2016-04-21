@@ -62,6 +62,8 @@ public class CombinedrVSMandAPI2VEC {
 		LinkedHashMap<Integer, LinkedHashMap<Integer, Double>> dataJaccardDistance = (LinkedHashMap<Integer, LinkedHashMap<Integer, Double>>) 
 				FileUtils.readObjectFile(s + "/data/retrieval/Jaccard_439x439.dat");
 		
+		HashSet<Integer> outOfVocabExamples = new HashSet<Integer>();
+		
 		try {
 			Scanner textFR = new Scanner(new File(s+ "/data/retrieval/KodeJava_439.en"));
 			Scanner apiFR = new Scanner(new File(s+ "/data/retrieval/KodeJava_439.cod"));
@@ -72,6 +74,8 @@ public class CombinedrVSMandAPI2VEC {
 				lineCount ++;
 				String text = textFR.nextLine();
 				String code = apiFR.nextLine();
+				
+				boolean outOfVocab = false;
 				
 //					if(!skipLines.contains(lineCount))
 //						continue;
@@ -87,14 +91,15 @@ public class CombinedrVSMandAPI2VEC {
 				
 				String[] textTokens = text.split("\\s");
 				query.avgVector = searchImpl.getAverageVector(textTokens);
-				if(query.avgVector == null)
+				if(query.avgVector == null) {
+					outOfVocab = true;
 					continue;
+				}
 				
 				// Code example information
 				RetrievedCodeExample codeEx = new RetrievedCodeExample();
 				codeEx.exId = lineCount;
 				codeEx.example = code;
-				
 				String[] APIs = code.split("\\s");
 				for(String API : APIs) {
 					double[] apiVec;
@@ -114,9 +119,18 @@ public class CombinedrVSMandAPI2VEC {
 						}
 						exContainThisAPI.add(codeEx);
 					}
+					else {
+						System.out.println(API);
+						outOfVocab = true;
+					}
 				}
-				oracleQueryCodeEx.put(query, codeEx);
+				if(!outOfVocab)
+					oracleQueryCodeEx.put(query, codeEx);
+				else
+					outOfVocabExamples.add(lineCount);
 			}
+			
+			FileUtils.writeObjectFile(outOfVocabExamples, s + "/data/retrieval/outOfVocabExamples.dat");
 			
 			textFR.close();
 			apiFR.close();

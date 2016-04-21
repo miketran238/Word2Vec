@@ -92,6 +92,7 @@ public class RetrievalWithMatching {
 				codeEx.exId = lineCount;
 				codeEx.example = code;
 				
+				boolean outOfVocab = false;
 				String[] APIs = code.split("\\s");
 				for(String API : APIs) {
 					double[] apiVec;
@@ -114,10 +115,11 @@ public class RetrievalWithMatching {
 					}
 					else {
 						System.out.println(API);
+						outOfVocab = true;
 					}
 				}
-				
-				oracleQueryCodeEx.put(query, codeEx);
+				if(!outOfVocab)
+					oracleQueryCodeEx.put(query, codeEx);
 			}
 			
 			textFR.close();

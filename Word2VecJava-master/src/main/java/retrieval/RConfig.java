@@ -6,7 +6,7 @@ public class RConfig {
 	public static int window = 8;
 	public static int dimension = 200;
 	public static double sampleRate = 1e-3; // how to choose
-	public static String outputExtension = RConfig.modelType + "_" + RConfig.window + RConfig.dimension + sampleRate;
+	public static String outputExtension = RConfig.modelType + "_" + RConfig.window + RConfig.dimension + sampleRate; // + "ManFix"
 	
 	/* Mixture/Linear combination of score */
 	public static double alpha = 0.5;
