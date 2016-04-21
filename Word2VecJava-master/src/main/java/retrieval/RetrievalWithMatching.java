@@ -112,6 +112,9 @@ public class RetrievalWithMatching {
 						}
 						exContainThisAPI.add(codeEx);
 					}
+					else {
+						System.out.println(API);
+					}
 				}
 				
 				oracleQueryCodeEx.put(query, codeEx);

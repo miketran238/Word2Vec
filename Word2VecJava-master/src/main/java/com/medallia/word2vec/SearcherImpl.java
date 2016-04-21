@@ -148,7 +148,7 @@ public class SearcherImpl implements Searcher {
   	for(String word : words) {
 		double[] v = getVectorOrNull(word);
 		if( v == null || word.equals("use") || word.equals("know")) {
-			System.out.println(word);
+//			System.out.println(word);
 			continue;
 		}
 		average = getSum(v, average);
