@@ -25,15 +25,15 @@ public class CombinedrVSMandAPI2VEC {
 	@SuppressWarnings("unchecked")
 	public void retrieve() {
 		// Get model to determine vector representations for each sequence
-			Word2VecModel model = null;
-			SearcherImpl searchImpl = null;
-			try {
-				model = Word2VecModel.fromBinFile(new File("text_" + RConfig.outputExtension + ".bin"));
-				searchImpl = new SearcherImpl(model);
-			}
-			catch(Exception e){
-				e.printStackTrace();
-			}
+		Word2VecModel model = null;
+		SearcherImpl searchImpl = null;
+		try {
+			model = Word2VecModel.fromBinFile(new File("text_" + RConfig.outputExtension + ".bin"));
+			searchImpl = new SearcherImpl(model);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 		
 		
 		/* Read database of corresponding text and code sequences and store a mapping data -Oracle data, pair <query, code example> */

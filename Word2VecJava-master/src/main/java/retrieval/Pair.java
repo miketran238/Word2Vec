@@ -1,5 +1,6 @@
 package retrieval;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -7,8 +8,12 @@ import java.util.Objects;
  * implementation of equals(), returning true if equals() is true on each of the contained
  * objects.
  */
-public class Pair<F, S> {
-    public final F first;
+public class Pair<F, S> implements Serializable {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 2655561450113931218L;
+	public final F first;
     public final S second;
 
     /**
