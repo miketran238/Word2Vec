@@ -48,7 +48,7 @@ ThreadGroup::ThreadGroup ThreadGroup::ThreadGroup Thread::Thread Thread::Thread 
 Thread::Thread Thread::Thread Thread::start Thread::activeCount Thread::currentThread Thread::getName PrintStream::format
 ThreadGroup::ThreadGroup ThreadGroup::ThreadGroup ThreadGroup::ThreadGroup ThreadGroup::ThreadGroup ThreadGroup::ThreadGroup ThreadGroup::ThreadGroup Thread::Thread Thread::Thread Thread::Thread Thread::Thread Thread::start Thread::start ThreadGroup::activeGroupCount ThreadGroup::getName PrintStream::format ThreadGroup::activeCount ThreadGroup::getName PrintStream::format  PrintStream::println  PrintStream::println
 ThreadGroup::ThreadGroup ThreadGroup::ThreadGroup ThreadGroup::ThreadGroup ThreadGroup::ThreadGroup Thread::Thread Thread::Thread Thread::Thread Thread::Thread Thread::start Thread::start Thread::getName Thread::getThreadGroup ThreadGroup::getName PrintStream::format Thread::getName Thread::getThreadGroup ThreadGroup::getName PrintStream::format  PrintStream::println
-PrintStream::println  Thread::Thread Thread::Thread Thread::start Thread::State::State Thread::getState Enum::name PrintStream::println
+PrintStream::println  Thread::Thread Thread::Thread Thread::start Thread::State Thread::getState Enum::name PrintStream::println
 Map::Map Map::keySet String::String Map::get PrintStream::println  Locale::Locale Locale::getAvailableLocales Map::Map TreeMap::TreeMap Locale::getDisplayCountry Currency::getInstance Currency::getCurrencyCode Map::put
 SimpleDateFormat::SimpleDateFormat SimpleDateFormat::SimpleDateFormat String::String SimpleDateFormat::toPattern PrintStream::println Date::Date SimpleDateFormat::format PrintStream::println
 String::String Double::Double Class::Class Class::Class Class::Class Object::getClass Class::Class Class::getComponentType Class::getCanonicalName PrintStream::println Class::Class Class::getComponentType Class::getCanonicalName PrintStream::println Class::Class Class::getComponentType Class::getCanonicalName PrintStream::println Object::getClass Class::getName PrintStream::println
@@ -215,7 +215,7 @@ List::List ArrayList::ArrayList List::add List::toArray Arrays::toString PrintSt
 FileInputStream::FileInputStream FileInputStream::FileInputStream FileInputStream::read PrintStream::printf PrintStream::println FileInputStream::close
 Date::Date Date::Date Calendar::Calendar Calendar::getInstance Calendar::add Date::Date Calendar::getTime Date::after PrintStream::println
 Date::Date Date::Date Calendar::Calendar Calendar::getInstance Calendar::add Date::Date Calendar::getTime Date::before PrintStream::println
-Properties::Properties Properties::Properties Properties::setProperty Properties::setProperty Properties::setProperty Map::Map HashMap::HashMap Set::Set Map::entrySet Map::Entry::Entry PrintStream::printf
+Properties::Properties Properties::Properties Properties::setProperty Properties::setProperty Properties::setProperty Map::Map HashMap::HashMap Set::Set Map::entrySet Map::Entry PrintStream::printf
 Thread::Thread Thread::Thread Thread::setPriority Thread::setPriority Thread::start Thread::start    Thread::currentThread Thread::getName PrintStream::println Math::random Thread::sleep Throwable::printStackTrace Thread::yield
 File::File File::listRoots File::File File::File File::File File::File File::getAbsolutePath PrintStream::println
 File::File File::File File::isDirectory String::String File::list File::getPath PrintStream::println
