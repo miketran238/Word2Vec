@@ -39,8 +39,8 @@ public class Word2VecExamples {
 	
 	/** Runs the example */
 	public static void main(String[] args) throws IOException, TException, UnknownWordException, InterruptedException {
-		demoWord();
-//		loadModel();
+//		demoWord();
+		loadModel();
 	}
 	
 	/** 
