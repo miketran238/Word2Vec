@@ -132,8 +132,8 @@ Pattern::Pattern Pattern::compile String::String Matcher::Matcher Pattern::match
 File::File File::File Desktop::Desktop Desktop::getDesktop Desktop::print Throwable::printStackTrace
 File::File File::File Desktop::Desktop Desktop::getDesktop Desktop::edit Throwable::printStackTrace
 File::File File::File Desktop::Desktop Desktop::getDesktop Desktop::open Throwable::printStackTrace
-Desktop::Desktop Desktop::getDesktop Desktop::mail Throwable::printStackTrace String::String URI URI::create Desktop::mail Throwable::printStackTrace
-URI URI::create Desktop::Desktop Desktop::getDesktop Desktop::browse Throwable::printStackTrace
+Desktop::Desktop Desktop::getDesktop Desktop::mail Throwable::printStackTrace String::String URI::URI URI::create Desktop::mail Throwable::printStackTrace
+URI::URI URI::create Desktop::Desktop Desktop::getDesktop Desktop::browse Throwable::printStackTrace
 Graphics::drawRect Graphics::drawImage
 Color::black Graphics::setColor Graphics::drawRect Graphics::drawImage
 Connection::Connection Statement::Statement Connection::createStatement String::String ResultSet::ResultSet Statement::executeQuery ResultSet::next ResultSet::getInt PrintStream::println Statement::setMaxRows Statement::executeQuery PrintStream::println ResultSet::next ResultSet::getInt ResultSet::getString ResultSet::getString ResultSet::getBigDecimal ResultSet::getInt PrintStream::println Throwable::printStackTrace Throwable::printStackTrace  Class::forName DriverManager::getConnection  Connection::isClosed Connection::close
