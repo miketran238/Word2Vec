@@ -93,6 +93,7 @@ public class CombinedrVSMandAPI2VEC {
 				query.avgVector = searchImpl.getAverageVector(textTokens);
 				if(query.avgVector == null) {
 					outOfVocab = true;
+					outOfVocabExamples.add(lineCount);
 					continue;
 				}
 				
@@ -124,13 +125,13 @@ public class CombinedrVSMandAPI2VEC {
 						outOfVocab = true;
 					}
 				}
-				if(!outOfVocab)
+//				if(!outOfVocab)
 					oracleQueryCodeEx.put(query, codeEx);
-				else
-					outOfVocabExamples.add(lineCount);
+//				else
+//					outOfVocabExamples.add(lineCount);
 			}
 			
-			FileUtils.writeObjectFile(outOfVocabExamples, s + "/data/retrieval/outOfVocabExamples.dat");
+//			FileUtils.writeObjectFile(outOfVocabExamples, s + "/data/retrieval/outOfVocabExamples.dat");
 			
 			textFR.close();
 			apiFR.close();
@@ -139,8 +140,11 @@ public class CombinedrVSMandAPI2VEC {
 			ex.printStackTrace();
 		}
 		
+		/* Remove out-of-vocabulary examples from the results of rVSM, Jaccard */
+//		outOfVocabExamples.clear();
+		
 		// Retrieval part, setup top K
-		int KThreshold = 10, K = 0; // counter K
+		int KThreshold = 5, K = 0; // counter K
 		HashSet<Integer> filteredExamples = new HashSet<>();
 		System.out.printf("Retrieval top-K accuracy for %d examples:\n", oracleQueryCodeEx.size());
 		
@@ -188,6 +192,9 @@ public class CombinedrVSMandAPI2VEC {
 					}
 				}
 				
+				/* Remove query whose code elements are out of vocabulary of API2VEC */
+				
+				
 				/* Get score from rVSM */
 				int queryLineIdx = query.queryId;
 				LinkedHashMap<Integer, Double> rVSMScoredExms = rVSMRankedData.get(queryLineIdx);
@@ -198,6 +205,10 @@ public class CombinedrVSMandAPI2VEC {
 				Iterator<Map.Entry<Integer, Double>> jaccardEntries = jaccardDistanceWrtQuery.entrySet().iterator();
 				while(jaccardEntries.hasNext()) {
 					Map.Entry<Integer, Double> entry = jaccardEntries.next();
+					if(outOfVocabExamples.contains(entry.getKey())) {
+						jaccardEntries.remove();
+						continue;
+					}
 					Double jaccard = entry.getValue();
 					if(jaccard > normJaccard)
 						normJaccard = jaccard;
@@ -213,6 +224,10 @@ public class CombinedrVSMandAPI2VEC {
 				double rVSMNormalProb = 0.0;
 				while(rVSMSentries.hasNext()) {
 					Map.Entry<Integer, Double> entry = rVSMSentries.next();
+					if(outOfVocabExamples.contains(entry.getKey())) {
+						rVSMSentries.remove();
+						continue;
+					}
 					double rVSMScore = Math.exp(entry.getValue());
 //					entry.setValue(rVSMScore);
 					if(rVSMNormalProb < rVSMScore)
@@ -253,9 +268,9 @@ public class CombinedrVSMandAPI2VEC {
 					RetrievedCodeExample candCodeEx = entry.getKey();
 					if(rVSMScoredExms.containsKey(candCodeEx.exId)) {
 						double jaccard = jaccardDistanceWrtQuery.get(queryLineIdx);
-						if(jaccard < 0.63)
-							RConfig.alpha = 0.5;
-						else
+						if(jaccard < 0.65) // 0.65 may be optimal
+							RConfig.alpha = 0.0; // 0.35 may be optimal (wrt top-K accuracy)
+						else // if(jaccard > 0.65)
 							RConfig.alpha = 1.0;
 						double combinedScore = RConfig.alpha * rVSMScoredExms.get(candCodeEx.exId) + 
 								(1-RConfig.alpha) * candCodeEx.score;

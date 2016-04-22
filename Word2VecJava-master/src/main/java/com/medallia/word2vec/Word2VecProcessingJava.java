@@ -66,8 +66,8 @@ public class Word2VecProcessingJava {
 
 //				demoWordWithMath();
 //		demoWordDisplay1();
-//		demoWordDisplay2();
-		retrieveAPISequence();
+		demoWordDisplay2();
+//		retrieveAPISequence();
 //		calculateSpearmanRHO();
 
 	}
@@ -163,7 +163,7 @@ public class Word2VecProcessingJava {
 	public static void demoWordDisplay2() throws IOException, TException, InterruptedException, UnknownWordException {
 
 		try {
-			Word2VecModel model = Word2VecModel.fromBinFile(new File("text8.bin"));
+			Word2VecModel model = Word2VecModel.fromBinFile(new File("text_" + RConfig.outputExtension + ".bin"));
 			writeLabelnValues(model);
 			pca_disp();
 //			tsne_disp();
@@ -358,7 +358,7 @@ public class Word2VecProcessingJava {
 			FileWriter labelFW = new FileWriter(s + "/data/test/dataLabel.txt");
 			FileWriter valueFW = new FileWriter(s + "/data/test/dataValues.txt");
 			
-			String [] samples = MatrixUtils.simpleReadLines(new File(s + "/data/test/Code-Code_PCA_ASE.txt"));
+			String [] samples = MatrixUtils.simpleReadLines(new File(s + "/data/test/Text-Code_PCA_ASE_v2.txt"));
 			HashSet<String> hashedSamples = new HashSet<String>();
 			for(String sample : samples) {
 				hashedSamples.add(sample);
