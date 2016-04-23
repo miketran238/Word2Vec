@@ -54,7 +54,7 @@ public class CombinedrVSMandAPI2VEC {
 		Path currentRelativePath = Paths.get("");
 		String s = currentRelativePath.toAbsolutePath().toString();
 		
-		HashSet<Integer> skipLines = (HashSet<Integer>) FileUtils.readObjectFile(s + "/data/retrieval/KodeJava_topKOver5.dat"); //KodeJava_topKOver5, rVSM_260
+		HashSet<Integer> API2VEC_Top1 = (HashSet<Integer>) FileUtils.readObjectFile(s + "/data/retrieval/KJ_API2VECTop1Retrieved.dat"); //KJ_API2VECTop1Retrieved,  KodeJava_topKOver5, rVSM_260
 		
 		LinkedHashMap<Integer, LinkedHashMap<Integer, Double>> rVSMRankedData = 
 				(LinkedHashMap<Integer, LinkedHashMap<Integer, Double>>) FileUtils.readObjectFile(s + "/data/retrieval/rVSM_allResult.dat");
@@ -144,8 +144,8 @@ public class CombinedrVSMandAPI2VEC {
 //		outOfVocabExamples.clear();
 		
 		// Retrieval part, setup top K
-		int KThreshold = 5, K = 0; // counter K
-		HashSet<Integer> filteredExamples = new HashSet<>();
+		int KThreshold = 1, K = 0; // counter K
+		HashSet<Integer> API2VECTop1Retrieved = new HashSet<>();
 		System.out.printf("Retrieval top-K accuracy for %d examples:\n", oracleQueryCodeEx.size());
 		
 		while (K++ < KThreshold) { // start from top 1 to 5
@@ -268,9 +268,9 @@ public class CombinedrVSMandAPI2VEC {
 					RetrievedCodeExample candCodeEx = entry.getKey();
 					if(rVSMScoredExms.containsKey(candCodeEx.exId)) {
 						double jaccard = jaccardDistanceWrtQuery.get(queryLineIdx);
-						if(jaccard < 0.65) // 0.65 may be optimal
-							RConfig.alpha = 0.0; // 0.35 may be optimal (wrt top-K accuracy)
-						else // if(jaccard > 0.65)
+//						if(jaccard < 0.65) // 0.65 may be optimal
+//							RConfig.alpha = 0.0; // 0.35 may be optimal (wrt top-K accuracy)
+//						else // if(jaccard > 0.65)
 							RConfig.alpha = 1.0;
 						double combinedScore = RConfig.alpha * rVSMScoredExms.get(candCodeEx.exId) + 
 								(1-RConfig.alpha) * candCodeEx.score;
@@ -279,22 +279,7 @@ public class CombinedrVSMandAPI2VEC {
 					}
 				}
 				
-//			Double maxrVSMScore = rVSMScoredExms.values().iterator().next();
-//			
-//			LinkedHashMap<RetrievedCodeExample, Double> sortedRetMeasureWrtQuery = RetrievalWithMatching.sortObjMap(retMeasureWrtQuery);
-//			Double maxA2VCosine = sortedCosineMeasure.values().iterator().next();
-			
-//				for(RetrievedCodeExample candCodeEx : retMeasureWrtQuery.values()) {
-//					if(rVSMScoredExms.containsKey(candCodeEx.exId)) {
-//						double jaccard = dataJaccardDistance.get(queryLineIdx);
-//						double combinedScore = RConfig.alpha * rVSMScoredExms.get(candCodeEx.exId) / maxrVSMScore + 
-//								(1-RConfig.alpha) * candCodeEx.score / maxA2VCosine;
-//						candCodeEx.score = combinedScore;
-//						retMeasureWrtQuery.put(candCodeEx, candCodeEx.score);
-//					}
-//				}
-				
-					// Order by new retrieval score and get top K
+				// Order by new retrieval score and get top K
 				int k = 0;
 				
 				LinkedHashMap<RetrievedCodeExample, Double> sortedRetMeasureWrtQuery = RetrievalWithMatching.sortObjMap(retMeasureWrtQuery);
@@ -303,7 +288,7 @@ public class CombinedrVSMandAPI2VEC {
 				for(RetrievedCodeExample sortedEx : sortedRetMeasureWrtQuery.keySet()) {
 					if(k++ < K && sortedEx == oracleQueryCodeEx.get(query)) {
 						countAccurate ++;
-						filteredExamples.add(queryLineIdx);
+						API2VECTop1Retrieved.add(queryLineIdx);
 						if(K == 1)
 							System.out.println(query.text + "\t" + sortedEx.example + "\t" + k);
 						break;
@@ -318,6 +303,14 @@ public class CombinedrVSMandAPI2VEC {
 			System.out.printf("%f", countAccurate/(double) oracleQueryCodeEx.size());
 			System.out.println();
 		}
-//		FileUtils.writeObjectFile(filteredExamples, s + "/data/retrieval/KJ_API2VECTop1.dat");
+//		FileUtils.writeObjectFile(API2VECTop1Retrieved, s + "/data/retrieval/KJ_API2VECTop2Retrieved.dat");
+		int nonOverlap = 0;
+		for(Integer API2VECRe : API2VEC_Top1) {
+			if(!API2VECTop1Retrieved.contains(API2VECRe)) {
+				System.out.println(API2VECRe);
+				nonOverlap ++;
+			}
+		}
+		System.out.printf("Number of queries retreived correctly on top 1 and non-overlaped: %d\t%d\n", API2VECTop1Retrieved.size(), nonOverlap );
 	}
 }

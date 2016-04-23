@@ -118,7 +118,7 @@ public class RetrievalWithMatching {
 						outOfVocab = true;
 					}
 				}
-				if(!outOfVocab)
+//				if(!outOfVocab)
 					oracleQueryCodeEx.put(query, codeEx);
 			}
 			
@@ -132,7 +132,7 @@ public class RetrievalWithMatching {
 		// Retrieval part, setup top K
 		int KThreshold = 5, K = 0; // counter K
 		HashSet<Integer> filteredExamples = new HashSet<>();
-		System.out.println("Retrieval top-K accuracy:");
+		System.out.printf("Retrieval top-K accuracy for %d examples:\n", oracleQueryCodeEx.size());
 		
 		while (K++ < KThreshold) { // start from top 1 to 5
 			// count number of example get accurate in top K
