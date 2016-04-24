@@ -118,7 +118,7 @@ public class RetrievalWithMatching {
 						outOfVocab = true;
 					}
 				}
-//				if(!outOfVocab)
+				if(codeEx.codeElements.size() != 0)
 					oracleQueryCodeEx.put(query, codeEx);
 			}
 			
@@ -173,8 +173,27 @@ public class RetrievalWithMatching {
 							candCodeExp.count ++;
 							candCodeExp.score += sortedCosineMeasure.get(closestAPIsToQuery);
 						}
-						if (candCodeExp.count == J)
-							retMeasureWrtQuery.put(candCodeExp, candCodeExp.score / (double) J);
+//						if (candCodeExp.count == J)
+//							retMeasureWrtQuery.put(candCodeExp, candCodeExp.score / (double) J);
+					}
+				}
+				
+				
+				
+				for(RetrievedCodeExample candCodeExp : oracleQueryCodeEx.values()) {
+					if(candCodeExp.count != 0)
+						retMeasureWrtQuery.put(candCodeExp, candCodeExp.score / candCodeExp.count);
+				}
+				
+				
+				if(RConfig.isScoring1) {
+					for(RetrievedCodeExample candCodeExp : oracleQueryCodeEx.values()) {
+						double totalScore = 0.0;
+						for(String API : candCodeExp.codeElements.keySet()) {
+							totalScore += cosineScoreToSingleAPI.get(API);
+						}
+						if(candCodeExp.codeElements.size() != 0)
+							retMeasureWrtQuery.put(candCodeExp, totalScore / (double) candCodeExp.codeElements.size());
 					}
 				}
 				

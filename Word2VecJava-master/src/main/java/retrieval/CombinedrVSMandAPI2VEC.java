@@ -54,7 +54,7 @@ public class CombinedrVSMandAPI2VEC {
 		Path currentRelativePath = Paths.get("");
 		String s = currentRelativePath.toAbsolutePath().toString();
 		
-		HashSet<Integer> API2VEC_Top1 = (HashSet<Integer>) FileUtils.readObjectFile(s + "/data/retrieval/KJ_API2VECTop1Retrieved.dat"); //KJ_API2VECTop1Retrieved,  KodeJava_topKOver5, rVSM_260
+		HashSet<Integer> API2VEC_Top1 = (HashSet<Integer>) FileUtils.readObjectFile(s + "/data/retrieval/KJ_API2VECTop1NonOverlap.dat"); //KJ_API2VECTop1Retrieved,  KodeJava_topKOver5, rVSM_260
 		
 		LinkedHashMap<Integer, LinkedHashMap<Integer, Double>> rVSMRankedData = 
 				(LinkedHashMap<Integer, LinkedHashMap<Integer, Double>>) FileUtils.readObjectFile(s + "/data/retrieval/rVSM_allResult.dat");
@@ -125,7 +125,7 @@ public class CombinedrVSMandAPI2VEC {
 						outOfVocab = true;
 					}
 				}
-//				if(!outOfVocab)
+//				if( codeEx.codeElements.size() != 0) // !outOfVocab
 					oracleQueryCodeEx.put(query, codeEx);
 //				else
 //					outOfVocabExamples.add(lineCount);
@@ -187,12 +187,28 @@ public class CombinedrVSMandAPI2VEC {
 							candCodeExp.count ++;
 							candCodeExp.score += sortedCosineMeasure.get(closestAPIsToQuery);
 						}
-						if (candCodeExp.count == J)
-							retMeasureWrtQuery.put(candCodeExp, candCodeExp.score / (double) J);
+//						if (candCodeExp.count == J)
+//							retMeasureWrtQuery.put(candCodeExp, candCodeExp.score / (double) J);
 					}
 				}
 				
+				for(RetrievedCodeExample candCodeExp : oracleQueryCodeEx.values()) {
+					if(candCodeExp.count != 0)
+						retMeasureWrtQuery.put(candCodeExp, candCodeExp.score / candCodeExp.count);
+				}
+				
 				/* Remove query whose code elements are out of vocabulary of API2VEC */
+				
+				if(RConfig.isScoring1) {
+					for(RetrievedCodeExample candCodeExp : oracleQueryCodeEx.values()) {
+						double totalScore = 0.0;
+						for(String API : candCodeExp.codeElements.keySet()) {
+							totalScore += cosineScoreToSingleAPI.get(API);
+						}
+						if(candCodeExp.codeElements.size() != 0)
+							retMeasureWrtQuery.put(candCodeExp, totalScore / (double) candCodeExp.codeElements.size());
+					}
+				}
 				
 				
 				/* Get score from rVSM */
@@ -266,17 +282,19 @@ public class CombinedrVSMandAPI2VEC {
 				while(cosSEntries.hasNext()) {
 					Map.Entry<RetrievedCodeExample, Double> entry = cosSEntries.next();
 					RetrievedCodeExample candCodeEx = entry.getKey();
-					if(rVSMScoredExms.containsKey(candCodeEx.exId)) {
-						double jaccard = jaccardDistanceWrtQuery.get(queryLineIdx);
-//						if(jaccard < 0.65) // 0.65 may be optimal
-//							RConfig.alpha = 0.0; // 0.35 may be optimal (wrt top-K accuracy)
-//						else // if(jaccard > 0.65)
-							RConfig.alpha = 1.0;
-						double combinedScore = RConfig.alpha * rVSMScoredExms.get(candCodeEx.exId) + 
-								(1-RConfig.alpha) * candCodeEx.score;
-						candCodeEx.score = combinedScore;
-						entry.setValue(combinedScore); //Math.log(combinedScore));
-					}
+					
+					/* Make sure that data received from Hung contains all examples indexed by line #*/
+					assert rVSMScoredExms.containsKey(candCodeEx.exId);
+						
+					double jaccard = jaccardDistanceWrtQuery.get(queryLineIdx);
+					if(jaccard < 0.65) // 0.65 may be optimal
+						RConfig.alpha = 0.0; // 0.35 may be optimal (wrt top-K accuracy)
+					else // if(jaccard > 0.65)
+						RConfig.alpha = 1.0;
+					double combinedScore = RConfig.alpha * rVSMScoredExms.get(candCodeEx.exId) + 
+							(1-RConfig.alpha) * candCodeEx.score;
+					candCodeEx.score = combinedScore;
+					entry.setValue(combinedScore); //Math.log(combinedScore));
 				}
 				
 				// Order by new retrieval score and get top K
@@ -291,6 +309,8 @@ public class CombinedrVSMandAPI2VEC {
 						API2VECTop1Retrieved.add(queryLineIdx);
 						if(K == 1)
 							System.out.println(query.text + "\t" + sortedEx.example + "\t" + k);
+						if(query.queryId == 14)
+							System.out.println(query.text + "\t" + sortedEx.example + "\t" + k);
 						break;
 					}
 					if(sortedEx == oracleQueryCodeEx.get(query)) {
@@ -304,13 +324,17 @@ public class CombinedrVSMandAPI2VEC {
 			System.out.println();
 		}
 //		FileUtils.writeObjectFile(API2VECTop1Retrieved, s + "/data/retrieval/KJ_API2VECTop2Retrieved.dat");
+		
 		int nonOverlap = 0;
+		HashSet<Integer> nonOverlapTop1 = new HashSet<Integer>();
 		for(Integer API2VECRe : API2VEC_Top1) {
-			if(!API2VECTop1Retrieved.contains(API2VECRe)) {
+			if(API2VECTop1Retrieved.contains(API2VECRe)) {
 				System.out.println(API2VECRe);
 				nonOverlap ++;
+				nonOverlapTop1.add(API2VECRe);
 			}
 		}
+//		FileUtils.writeObjectFile(nonOverlapTop1, s + "/data/retrieval/KJ_API2VECTop1NonOverlap.dat");
 		System.out.printf("Number of queries retreived correctly on top 1 and non-overlaped: %d\t%d\n", API2VECTop1Retrieved.size(), nonOverlap );
 	}
 }

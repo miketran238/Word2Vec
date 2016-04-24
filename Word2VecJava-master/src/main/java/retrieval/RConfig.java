@@ -10,4 +10,6 @@ public class RConfig {
 	
 	/* Mixture/Linear combination of score */
 	public static double alpha = 0.5;
+	
+	public static boolean isScoring1 = false;
 }
