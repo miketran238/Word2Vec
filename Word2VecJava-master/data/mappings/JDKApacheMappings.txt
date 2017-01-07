@@ -166,6 +166,32 @@ apache::PeekingIterator::peek [0.8217462881167402]
 apache::ObjectArrayIterator::getArray [0.8151653887052766]
 apache::OpenIntToDoubleHashMap::advance [0.8130446322166874]
 
+--- 8, 200, e-4
+jdk::Iterator::hasNext
+apache::FluentIterable::reverse [0.9000298511123186]
+apache::IteratorEnumeration::hasMoreElements [0.897671634013683]
+apache::EmptyListIterator::emptyListIterator [0.8955827665828965]
+apache::CollatingIterator::getIterators [0.8947004904175722]
+apache::IterableUtils::checkNotNull [0.8945579388588442]
+apache::FilterListIterator::getListIterator [0.8933928452075128]
+apache::ChromosomePair::getFirst [0.8906369932837472]
+apache::DateUtils::hasNext [0.8886134156671586]
+apache::IteratorChain::size [0.8868803729785912]
+apache::Iterator::next [0.8856441982502855]
+
+--- 10, 200, e-4
+jdk::Iterator::hasNext
+apache::LineIterator::hasNext [0.8080783456364506]
+apache::PeekingIterator::peek [0.7939311257652171]
+apache::CollatingIterator::getIterators [0.7600568406110875]
+apache::ObjectArrayIterator::next [0.7456486322959601]
+apache::ChromosomePair::getFirst [0.7329335315965182]
+apache::LoopingListIterator::next [0.7289328279026824]
+apache::CircularFifoQueue::CircularFifoQueue [0.7275936706388392]
+apache::PeekingIterator::remove [0.7186011830461473]
+apache::TransformIterator::TransformIterator [0.7176643413607809]
+apache::ZippingIterator::hasNext [0.7169591626648416]
+
 jdk::String::indexOf
 apache::StrBuilder::lastIndexOf [0.8061921884047248]
 apache::StringUtils::replaceEach [0.804375704639138]
@@ -202,6 +228,20 @@ apache::URI::hasAuthority [0.8886388144208963]
 apache::URI::hasFragment [0.8885351691102541]
 apache::URI::hasQuery [0.8884180295070214]
 
+---
+jdk::String::indexOf/trim
+apache::AbstractMapBag::isEmpty [0.7143912477096945]
+apache::Character::isWhitespace [0.703641795791224]
+apache::StringUtils::removeEndIgnoreCase [0.6983224040811172]
+apache::StringUtils::trimToNull [0.6960245112621878]
+apache::String::trim [0.6882594732414644]
+apache::StringUtils::indexOfDifference [0.6824934536666396]
+apache::AbstractFileComparator::toString [0.6712139624065903]
+apache::StringUtils::StringUtils [0.6682108791139757]
+apache::StringUtils::trim [0.6654731968247984]
+apache::IterableUtils::frequency [0.6624606819479214]
+
+
 jdk::String::equalsIgnoreCase
 apache::TreeBidiMap::inverseBidiMap [0.8492645113268426]
 apache::AbstractCalendarValidator::compareQuarters [0.8427367114047605]
@@ -214,6 +254,9 @@ apache::FilenameUtils::equalsOnSystem [0.814951221927051]
 apache::MathUtils::equals [0.814680759241379]
 apache::ReferenceIdentityMap::isEqualValue [0.8138896856255697]
 
+----
+apache::StringUtils::equalsIgnoreCase [0.6683058592887468]
+
 jdk::Integer::parseInt
 apache::MutableInt::MutableInt [0.7633938468341784]
 apache::FTP::isStrictMultilineParsing [0.7555605589725701]
@@ -225,6 +268,19 @@ apache::NumberUtils::isParsable [0.7442629901246797]
 apache::HeaderElement::parse [0.7373364719661489]
 apache::IMAP::sendCommand [0.736357384873279]
 apache::ProperFractionFormat::parse [0.7355541646962475]
+
+----- 8, 200, e-4
+jdk::Integer::parseInt
+apache::DateFormat::parse [0.8588710855051547]
+apache::ParsePosition::ParsePosition [0.8533038101611373]
+apache::DateParser::parse [0.8532373333443485]
+apache::MapUtils::getByte [0.8480331207771672]
+apache::CurrencyValidator::parse [0.845612191658934]
+apache::CalendarValidator::validate [0.8402128503487314]
+apache::BigIntegerValidator::maxValue [0.8394423026286604]
+apache::AbstractHashedMap::containsKey [0.8390148310892138]
+apache::MutableByte::getValue [0.8377098013347846]
+apache::MutableShort::MutableShort [0.8374326870925332]
 
 jdk::String::startsWith
 apache::FTPTimestampParserImpl::setRecentDateFormat [0.8459896701572164]
@@ -350,6 +406,7 @@ apache::AbstractBitwiseTrie::compare [0.940324842799109]
 apache::FileAlterationObserver::getDirectory [0.9391565475034961]
 apache::SparseGradient::rootN [0.9386523781832096]
 apache::EulerFieldIntegrator::getC [0.9382057826926357]
+
 jdk::Object::getClass
 apache::Class::getSimpleName [0.7451975976369073]
 apache::GraggBulirschStoerStepInterpolator::estimateError [0.7256981362068032]
@@ -361,6 +418,7 @@ apache::DerivativeStructure::getPartialDerivative [0.7022961187943091]
 apache::Diffable::diff [0.6995913206715934]
 apache::FieldUtils::writeDeclaredField [0.6945813304772713]
 apache::FieldDecompositionSolver::getInverse [0.6926566570448314]
+
 jdk::String::getBytes
 apache::URI::decode [0.7439894526626651]
 apache::URL::URL [0.7337486259901886]
@@ -372,12 +430,14 @@ apache::Charsets::Charsets [0.7097776240285403]
 apache::IOUtils::toInputStream [0.6975533668934362]
 apache::CharSequenceUtils::toCharArray [0.6973333028896366]
 apache::EndianUtils::readSwappedShort [0.6968813712202699]
+
 com.medallia.word2vec.Searcher$UnknownWordException: Unknown search word 'jdk::Exception::printStackTrace'
 	at com.medallia.word2vec.SearcherImpl.getVector(SearcherImpl.java:85)
 	at com.medallia.word2vec.SearcherImpl.getMatches(SearcherImpl.java:35)
 	at com.medallia.word2vec.Word2VecProcessingJava.getMappedAPIs(Word2VecProcessingJava.java:196)
 	at edu.iastate.ece.api2vec.APIMappings.doJDKApacheMapping(APIMappings.java:37)
 	at edu.iastate.ece.api2vec.APIMappings.main(APIMappings.java:21)
+
 jdk::Set::add
 apache::CompositeSet::addAll [0.8165420993042284]
 apache::CompositeSet::retainAll [0.8044912913753639]
@@ -389,6 +449,7 @@ apache::TransformedSortedSet::TransformedSortedSet [0.7847513993177426]
 apache::Range::isBefore [0.7764331949440276]
 apache::CompositeSet::isEmpty [0.776212011078385]
 apache::BetaDistribution::getSolverAbsoluteAccuracy [0.7727378310986445]
+
 jdk::String::split
 apache::SubHyperplane::getSide [0.7315740181550988]
 apache::ArcsSet::getMinus [0.7281980575209529]
@@ -400,6 +461,7 @@ apache::PolygonsSet::split [0.7073689902281369]
 apache::DfpField::getLn [0.7041261711582111]
 apache::SingularValueDecomposition::getConditionNumber [0.7005739933319785]
 apache::StringUtils::splitByWholeSeparator [0.6993307541715127]
+
 jdk::ArrayList::get
 apache::ArrayListIterator::next [0.9196082396984709]
 apache::MutableTriple::setRight [0.9179992410050393]
@@ -411,6 +473,7 @@ apache::ArrayRealVector::mapToSelf [0.9056428150261535]
 apache::PolyhedronsSet::visitLeafNode [0.9045636633654642]
 apache::IMAPImportMbox::wanted [0.9035215134806072]
 apache::CursorableLinkedList::Cursor [0.902988103568997]
+
 jdk::Object::toString
 apache::AbstractMapBag::toString [0.7167191633320174]
 apache::AbstractFormat::format [0.7124488952441796]
@@ -422,12 +485,14 @@ apache::RecursiveToStringStyle::RecursiveToStringStyle [0.6644297655142986]
 apache::ObjectUtils::identityToString [0.6609290220649974]
 apache::NTCredentials::toString [0.658034598321591]
 apache::StrBuilder::rightString [0.6569046743796294]
+
 com.medallia.word2vec.Searcher$UnknownWordException: Unknown search word 'jdk::Exception::getMessage'
 	at com.medallia.word2vec.SearcherImpl.getVector(SearcherImpl.java:85)
 	at com.medallia.word2vec.SearcherImpl.getMatches(SearcherImpl.java:35)
 	at com.medallia.word2vec.Word2VecProcessingJava.getMappedAPIs(Word2VecProcessingJava.java:196)
 	at edu.iastate.ece.api2vec.APIMappings.doJDKApacheMapping(APIMappings.java:37)
 	at edu.iastate.ece.api2vec.APIMappings.main(APIMappings.java:21)
+
 jdk::String::contains
 apache::BaseResultSetHandler::absolute [0.9380192478503071]
 apache::IgnoreCookiesSpec::pathMatch [0.9361893321959731]
@@ -439,6 +504,7 @@ apache::DoublePoint::getPoint [0.9334806758611268]
 apache::BaseResultSetHandler::isAfterLast [0.9333636923279687]
 apache::PolynomialSplineFunction::isValidPoint [0.9325428447687217]
 apache::RandomDataImpl::nextSecureInt [0.9323543230755607]
+
 jdk::File::getAbsolutePath
 apache::FileAlterationListenerAdaptor::onDirectoryChange [0.8809385958647407]
 apache::LockableFileWriter::createLock [0.8390310034059045]
@@ -450,6 +516,7 @@ apache::FilenameUtils::getFullPathNoEndSeparator [0.8296104103475246]
 apache::TrueFileFilter::accept [0.8293304579020904]
 apache::AbstractFileComparator::AbstractFileComparator [0.8240740536447677]
 apache::DelegateFileFilter::accept [0.8229066971553133]
+
 jdk::ArrayList::size
 apache::AbstractStepInterpolator::isForward [0.9743200333263073]
 apache::ObjectArrayIterator::hasNext [0.9731726297615134]
@@ -461,6 +528,7 @@ apache::AbstractRealMatrix::getRow [0.9694818679271126]
 apache::DummyLocalizable::getSourceString [0.9694431730141458]
 apache::FileEntry::getLastModified [0.9692511081235932]
 apache::StaticBucketMap::remove [0.9691050668331407]
+
 jdk::String::endsWith
 apache::DfpMath::expInternal [0.9200868697332615]
 apache::DefaultEquator::hash [0.9187701230122794]
@@ -472,6 +540,7 @@ apache::ResizableDoubleArray::hashCode [0.9131992571513687]
 apache::AbstractReferenceMap::createEntry [0.9130689601352379]
 apache::HashCodeBuilder::hashCode [0.9119565805473712]
 apache::OpenIntToFieldHashMap::perturb [0.9117616061674743]
+
 jdk::System::getProperty
 apache::Field::getProperty [0.847267497852923]
 apache::System::System [0.7570297272379342]
@@ -480,6 +549,7 @@ apache::SystemUtils::getSystemProperty [0.6557571721757771]
 apache::TreeBidiMap::getLeftChild [0.6382458062676121]
 apache::FTPClientConfig::setServerTimeZoneId [0.6239544999024597]
 apache::CanWriteFileFilter::accept [0.6213970128693035]
+
 jdk::Integer::toString
 apache::ToStringBuilder::appendToString [0.7821214341960457]
 apache::NumberUtils::isParsable [0.782100476198784]
@@ -491,6 +561,7 @@ apache::EncodingUtil::getBytes [0.7497625560736679]
 apache::BigFraction::subtract [0.7486516203957102]
 apache::Conversion::shortArrayToInt [0.7428084651394993]
 apache::Complex::pow [0.7408856677177109]
+
 jdk::Math::max
 apache::FastMath::max [0.8029874389222182]
 apache::FastMath::floorMod [0.7762392125286376]
@@ -502,6 +573,7 @@ apache::FastMath::min [0.7508897286307328]
 apache::MathUtils::copySign [0.7498484832716673]
 apache::ClusterEvaluator::isBetterScore [0.7491482890529219]
 apache::GenericValidator::minLength [0.7473495804800654]
+
 jdk::Integer::intValue
 apache::AbstractFieldMatrix::add [0.9782064165688105]
 apache::FTPFile::getGroup [0.9775541930337415]
@@ -525,6 +597,19 @@ apache::StringUtils::capitalize [0.7169106029870288]
 apache::WordUtils::uncapitalize [0.7162454282556036]
 apache::WordUtils::capitalizeFully [0.7136354403925838]
 apache::CharUtils::isAsciiAlphaUpper [0.713530801675359]
+
+---
+jdk::String::toLowerCase
+apache::FormSet::setVariant [0.7591583684368115]
+apache::StringUtils::uncapitalize [0.7520053372522224]
+apache::CholeskyDecomposition::getL [0.7433155012494295]
+apache::ExtensionFileComparator::compare [0.7420830406232533]
+apache::WordUtils::capitalize [0.7268489224183704]
+apache::StrBuilder::deleteAll [0.7267844594013984]
+apache::StringUtils::equalsIgnoreCase [0.7206420423227075]
+apache::StringUtils::stripAccents [0.7205002768692821]
+apache::ComplexFormat::getAvailableLocales [0.714336976431732]
+apache::StringUtils::isAsciiPrintable [0.7138538103887475]
 
 jdk::Hashtable::put
 apache::TreeBidiMap::put [0.8041200452349092]
@@ -561,6 +646,22 @@ apache::XmlStreamWriter::detectEncoding [0.7706107515553301]
 apache::PSquarePercentile::incrementPositions [0.7669767366816745]
 apache::FastMath::max [0.7645635673938018]
 apache::SimpsonIntegrator::SimpsonIntegrator [0.7611374811724217]
+
+
+----
+
+apache::FastMath::floorMod [0.8054077841832574]
+apache::FastMath::floorDiv [0.7615692993105426]
+apache::FastMath::nextUp [0.7562405202212547]
+apache::FastMath::max [0.7539980418492732]
+apache::Dfp::copySign [0.7460762232922201]
+apache::FastMath::floor [0.7445673333007014]
+apache::ArithmeticUtils::lcm [0.74352885291779]
+apache::Fraction::addAndCheck [0.73472602502923]
+apache::Precision::equalsIncludingNaN [0.7313672707692931]
+apache::FastMath::min [0.7313576681374658]
+--
+
 
 jdk::PrintStream::print
 apache::HttpConstants::getAsciiString [0.7473558605986298]
@@ -658,6 +759,21 @@ apache::MutableDouble::floatValue [0.7984523349614209]
 apache::Dfp::abs [0.7920204940265397]
 apache::RealVector::getMaxIndex [0.7909439790823761]
 apache::Optional::Optional [0.7867908162508125]
+
+-----
+jdk::Math::abs
+apache::MatrixUtils::checkSymmetric [0.8904107906064518]
+apache::MatrixUtils::isSymmetric [0.8757356602892407]
+apache::ComparatorUtils::min [0.8701001985711314]
+apache::Precision::equalsIncludingNaN [0.8681699333463101]
+apache::AbstractConvergenceChecker::getRelativeThreshold [0.8656565175857351]
+apache::FastMath::toDegrees [0.8654159413899991]
+apache::Fraction::abs [0.86484320540572]
+apache::Abs::Abs [0.8620501315768822]
+apache::ISINCheckDigit::ISINCheckDigit [0.8605671442469717]
+apache::AbstractConvergenceChecker::getAbsoluteThreshold [0.8571708960933193]
+
+
 
 jdk::Vector::add
 apache::CursorableLinkedList::nextIndex [0.9211803456195805]
@@ -777,6 +893,19 @@ apache::SynchronizedMultivariateSummaryStatistics::setMinImpl [0.930835574252170
 apache::AbstractMapMultiSet::iterator [0.930811723124459]
 apache::WeibullDistribution::isSupportLowerBoundInclusive [0.9305070366846325]
 apache::TreeBidiMap::setBlack [0.9304119781814575]
+
+----
+jdk::List::iterator
+apache::FilterListIterator::getListIterator [0.951453501999515]
+apache::UrlValidator::isValidQuery [0.9510609407666913]
+apache::IteratorUtils::emptyOrderedIterator [0.9510607991955737]
+apache::IteratorUtils::emptyListIterator [0.9492125500791264]
+apache::FileEntry::isDirectory [0.9491040898226744]
+apache::Transformer::transform [0.9483772435733158]
+apache::TournamentSelection::setArity [0.9483441866241611]
+apache::EmptyListIterator::emptyListIterator [0.9479126540692696]
+apache::ArrayIterator::getArray [0.9476082936511216]
+apache::IteratorChain::size [0.9471757227519746]
 
 jdk::Set::contains
 apache::TreeBidiMap::containsKey [0.8405466944581486]
@@ -946,6 +1075,19 @@ apache::LogisticDistribution::getSupportUpperBound [0.9318276505591291]
 apache::ArrayFieldVector::getField [0.9316807264947723]
 apache::ParetoDistribution::sample [0.9313167185274731]
 
+---
+jdk::Enumeration::nextElement
+apache::AbstractSortedMapDecorator::SortedMapIterator [0.9745089745545862]
+apache::ArrayListIterator::previous [0.9724479937735215]
+apache::FilterListIterator::setPredicate [0.9722388857993527]
+apache::ArrayListIterator::hasPrevious [0.9718548173115726]
+apache::StrTokenizer::hasNext [0.9716297516373495]
+apache::AbstractPatriciaTrie::createEntrySet [0.9712951372431022]
+apache::ObjectGraphIterator::hasNext [0.9710664437403321]
+apache::TreeBidiMap::ValueView [0.9710278704459221]
+apache::IteratorEnumeration::setIterator [0.9709538660362903]
+apache::Triple::getLeft [0.9709122834079961]
+
 jdk::Enumeration::hasMoreElements
 apache::FastDateParser::getParsePattern [0.9484749671390353]
 apache::TransformerMap::containsTransformer [0.9449002924018005]
@@ -1078,6 +1220,20 @@ apache::CCDDnnnnnnn::CCDDnnnnnnn [0.6507185949293097]
 apache::SingletonListIterator::previousIndex [0.650134652681309]
 apache::FastMath::incrementExact [0.6499048787035658]
 
+
+---
+jdk::ResultSet::next
+apache::MonotoneChain::MonotoneChain [0.9217952773618443]
+apache::WeightedEvaluation::WeightedEvaluation [0.9079749895896966]
+apache::PolygonsSet::filterSpuriousVertices [0.9074604281285085]
+apache::BaseOptimizer::incrementIterationCount [0.9063390887119]
+apache::FastDateParser::adjustYear [0.9016149950317776]
+apache::CCDDnnnnnnn::CCDDnnnnnnn [0.9015818727046518]
+apache::TreeList::previous [0.9006337698328418]
+apache::StringUtils::right [0.8990457880121138]
+apache::Part::getTransferEncoding [0.8988687318487989]
+apache::TreeList::next [0.8983502953406329]
+
 jdk::String::toCharArray
 apache::MutableShort::shortValue [0.9290154905958805]
 apache::SizeFileComparator::compare [0.9282478492302412]
@@ -1089,3 +1245,17 @@ apache::BlockFieldMatrix::getRowDimension [0.92395179558565]
 apache::ISBNValidator::convertToISBN [0.923743728221627]
 apache::FileEntry::getLength [0.9234936768383235]
 apache::OpenMapRealMatrix::copy [0.9230660206581106]
+
+
+----
+jdk::Object::equals
+apache::MultiSet::equals [0.8167375816515591]
+apache::MapEntry::MapEntry [0.806489730960271]
+apache::NTCredentials::equals [0.7765570690325443]
+apache::RealVector::Entry [0.7635652214240359]
+apache::Object::equals [0.7514714898286238]
+apache::Equator::Equator [0.7452686262617829]
+apache::TransformingComparator::TransformingComparator [0.7403125066565429]
+apache::ReferenceMap::ReferenceMap [0.7296397641441804]
+apache::Bag::Bag [0.7219181076740941]
+apache::IndexedCollection::IndexedCollection [0.7201071084440478]

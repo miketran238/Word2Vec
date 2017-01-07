@@ -182,7 +182,7 @@ public class RetrievalWithMatching {
 				
 				for(RetrievedCodeExample candCodeExp : oracleQueryCodeEx.values()) {
 					if(candCodeExp.count != 0)
-						retMeasureWrtQuery.put(candCodeExp, candCodeExp.score / candCodeExp.count);
+						retMeasureWrtQuery.put(candCodeExp, candCodeExp.score / J);
 				}
 				
 				

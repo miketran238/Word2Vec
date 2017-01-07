@@ -200,7 +200,7 @@ public class Word2VecProcessingJava {
 			int count = 0;
 			for(Match match : matches) {
 				String crossLibAPI = match.toString();
-				if(crossLibAPI.contains("apache::") && count++ < 10) {
+				if(crossLibAPI.contains("::") && count++ < 15) { //apache::, 10
 					apcMatches.add(match);
 				}
 			}
@@ -358,7 +358,7 @@ public class Word2VecProcessingJava {
 			FileWriter labelFW = new FileWriter(s + "/data/test/dataLabel.txt");
 			FileWriter valueFW = new FileWriter(s + "/data/test/dataValues.txt");
 			
-			String [] samples = MatrixUtils.simpleReadLines(new File(s + "/data/test/Text-Code_PCA_ASE_v2.txt"));
+			String [] samples = MatrixUtils.simpleReadLines(new File(s + "/data/test/Code-Code_PCA_ASE.txt"));
 			HashSet<String> hashedSamples = new HashSet<String>();
 			for(String sample : samples) {
 				hashedSamples.add(sample);

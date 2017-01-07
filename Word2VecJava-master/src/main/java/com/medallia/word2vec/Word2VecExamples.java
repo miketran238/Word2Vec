@@ -39,8 +39,8 @@ public class Word2VecExamples {
 	
 	/** Runs the example */
 	public static void main(String[] args) throws IOException, TException, UnknownWordException, InterruptedException {
-		demoWord();
-//		loadModel();
+//		demoWord();
+		loadModel();
 	}
 	
 	/** 
@@ -50,7 +50,7 @@ public class Word2VecExamples {
 	public static void demoWord() throws IOException, TException, InterruptedException, UnknownWordException {
 		Path currentRelativePath = Paths.get("");
 		String s = currentRelativePath.toAbsolutePath().toString();
-		File f = new File(s + "/data/train/KJTrunc_WithCodeAsText_ManFix.l"); // KodeJavaTrunc_JDKDocs.txt java-apache-2.l
+		File f = new File(s + "/data/train/jdk-apache.l"); // KodeJavaTrunc_JDKDocs.txt java-apache-2.l KJTrunc_WithCodeAsText_ManFix.l
 		if (!f.exists())
 	       	       throw new IllegalStateException("Please download and unzip the text8 example from http://mattmahoney.net/dc/text8.zip");
 		List<String> read = Common.readToList(f);
@@ -65,7 +65,7 @@ public class Word2VecExamples {
 				.setMinVocabFrequency(1)
 				.useNumThreads(20)
 				.setWindowSize(RConfig.window)
-				.type(NeuralNetworkType.CBOW)
+				.type(NeuralNetworkType.TopicCBOW)
 				.setLayerSize(RConfig.dimension)
 				.useNegativeSamples(25)
 				.setDownSamplingRate(RConfig.sampleRate)
@@ -146,14 +146,13 @@ public class Word2VecExamples {
 				}
 				String[] numbInputs = word.split("\\s");
 				
-				if(numbInputs.length == 2) {
-					List<Match> matches = searcher.getMatches(word, 300);
-//					for (Match match : matches) {
-////						if(match.match().contains("::"))
-//						if(match.match().contains("CS::"))
-//							System.out.println(match.match());
-//					}
-					System.out.println(Strings.joinObjects("\n", matches));
+				if(numbInputs.length == 1) {
+					List<Match> matches = searcher.getMatches(word, 100);
+					for (Match match : matches) {
+						if(match.match().contains("::"))
+							System.out.println(match.match());
+					}
+//					System.out.println(Strings.joinObjects("\n", matches));
 				}
 				else if(numbInputs.length == 3) {
 					double[] diff = searchImpl.getVectorFrom3Words(numbInputs[0], numbInputs[1], numbInputs[2]);
@@ -165,24 +164,24 @@ public class Word2VecExamples {
 							System.out.println(match.match());
 					}
 				}
-				else {
-					double[] average = searchImpl.getAverageVector(numbInputs);
-					List<Match> matches = searcher.getMatches(average, 100);
-					for (Match match : matches) {
-						if(word.contains("::")) { // Apache
-							if(match.match().contains("::"))
-								System.out.println(match);
-						}
-						if(word.contains("::")) { // Java 
-							if(match.match().contains("::"))
-								System.out.println(match);
-						}
-						else { //word
+//				else {
+//					double[] average = searchImpl.getAverageVector(numbInputs);
+//					List<Match> matches = searcher.getMatches(average, 100);
+//					for (Match match : matches) {
+//						if(word.contains("::")) { // Apache
 //							if(match.match().contains("::"))
-								System.out.println(match);
-						}
-					}
-				}
+//								System.out.println(match);
+//						}
+//						if(word.contains("::")) { // Java 
+//							if(match.match().contains("::"))
+//								System.out.println(match);
+//						}
+//						else { //word
+////							if(match.match().contains("::"))
+//								System.out.println(match);
+//						}
+//					}
+//				}
 			}
 		}
 	}

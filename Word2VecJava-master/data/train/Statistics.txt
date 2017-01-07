@@ -50,10 +50,15 @@ Frequency of an API: 3.1115833060913154
 --Java+Apache
 Number of distinct APIs:36923
 Frequency of an API: 3.1942420713376487
+117941
 
 The whole dataset
 Number of unique words in the original dataset: 47381
 Average number of times a word occurs: 25.576813490639708
+1212005.98
+
+# documentation: 24.515 + 19.587
+
 
 
 
